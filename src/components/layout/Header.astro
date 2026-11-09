@@ -1,10 +1,9 @@
 ---
-import { navigationItems } from '../../data/site-content';
+import { brandInfo, navigationItems } from '../../data/site-content';
 import CriadeLogo from '../ui/CriadeLogo.astro';
 import Icon from '../ui/Icon.astro';
 
 const isHome = Astro.url.pathname === '/';
-const isSobrePage = Astro.url.pathname.startsWith('/sobre');
 const resolveHref = (href: string) =>
   href.startsWith('#') && !isHome ? `/${href}` : href;
 ---
@@ -22,31 +21,24 @@ const resolveHref = (href: string) =>
       <nav aria-label="Navegação principal">
         <ul class="flex items-center gap-5 lg:gap-8">
           {
-            navigationItems.map((item) => {
-              const active = item.href === '#sobre' && isSobrePage;
-              return (
-                <li>
-                  <a
-                    href={resolveHref(item.href)}
-                    aria-current={active ? 'page' : undefined}
-                    class:list={[
-                      "relative py-2 text-sm font-medium transition-colors duration-150 after:content-[''] after:absolute after:bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-[var(--color-accent)] after:transition-transform after:duration-200 after:origin-left",
-                      active
-                        ? 'text-[var(--color-accent)] after:scale-x-100'
-                        : 'text-[#171717] hover:text-[var(--color-accent)] after:scale-x-0 hover:after:scale-x-100',
-                    ]}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              );
-            })
+            navigationItems.map((item) => (
+              <li>
+                <a
+                  href={resolveHref(item.href)}
+                  class="relative py-2 text-sm font-medium text-[#171717] hover:text-[var(--color-accent)] transition-colors duration-150 after:content-[''] after:absolute after:bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-[var(--color-accent)] after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:origin-left"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
           }
         </ul>
       </nav>
 
       <a
-        href={resolveHref('#contato')}
+        href={brandInfo.contact.whatsappHref}
+        target="_blank"
+        rel="noopener noreferrer"
         class="inline-flex items-center justify-center gap-2.5 min-h-11 rounded-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-5 lg:px-6 py-2.5 text-xs lg:text-sm font-semibold transition-all duration-200 shadow-xs active:translate-y-px shrink-0"
       >
         <span>Solicite um orçamento</span>
@@ -96,7 +88,9 @@ const resolveHref = (href: string) =>
       </nav>
 
       <a
-        href={resolveHref('#contato')}
+        href={brandInfo.contact.whatsappHref}
+        target="_blank"
+        rel="noopener noreferrer"
         data-mobile-nav-link
         class="inline-flex items-center justify-center gap-2.5 min-h-12 rounded-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-6 py-3.5 text-sm font-semibold transition-colors w-full"
       >

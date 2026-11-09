@@ -12,11 +12,11 @@ import aboutStudioMugImg from '../../assets/about/about-studio-mug.webp';
 >
   <div class="container-editorial">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-      <!-- Coluna 1 (Esquerda): Apenas a foto limpa -->
+      <!-- Coluna 1 (Esquerda): Apenas a Foto -->
       <div class="lg:col-span-4">
         <div
           data-about-photo-frame
-          class="overflow-hidden rounded-2xl bg-[#111111]"
+          class="overflow-hidden rounded-[18px]"
         >
           <Image
             src={aboutStudioMugImg}
@@ -26,7 +26,7 @@ import aboutStudioMugImg from '../../assets/about/about-studio-mug.webp';
             loading="lazy"
             decoding="async"
             data-about-photo-img
-            class="w-full h-auto object-cover block"
+            class="w-full h-auto object-cover block will-change-transform"
           />
         </div>
       </div>
@@ -36,12 +36,12 @@ import aboutStudioMugImg from '../../assets/about/about-studio-mug.webp';
         <div class="inline-flex items-center gap-3 mb-4">
           <span
             data-about-eyebrow-line
-            class="w-7 h-[2px] bg-[#F47721] origin-left block"
+            class="w-7 h-[2px] bg-[var(--color-accent)] origin-left block"
             aria-hidden="true"
           ></span>
           <span
             data-about-eyebrow-text
-            class="text-[11px] font-bold tracking-[0.14em] uppercase text-[#F47721]"
+            class="text-[11px] font-bold tracking-[0.14em] uppercase text-[var(--color-accent)]"
           >
             {aboutContent.eyebrow}
           </span>
@@ -49,15 +49,17 @@ import aboutStudioMugImg from '../../assets/about/about-studio-mug.webp';
 
         <h1
           id="sobre-heading"
-          class="font-extrabold text-xl sm:text-2xl xl:text-[1.65rem] leading-[1.18] tracking-[-0.025em] text-[#171717]"
+          class="heading-section text-2xl sm:text-3xl xl:text-[2.1rem] leading-[1.08] tracking-[-0.03em] uppercase text-[#171717]"
         >
-          {aboutContent.h1Lines.map((line) => (
-            <span data-about-heading-line class="block">
-              {line}
-            </span>
-          ))}
-          <span data-about-heading-line class="block text-[#F47721]">
-            {aboutContent.h1Accent}
+          <span data-about-heading-line class="block">
+            {aboutContent.headline.line1}
+          </span>
+          <span data-about-heading-line class="block">
+            {aboutContent.headline.line2}
+          </span>
+          <span data-about-heading-line class="block">
+            <span class="text-[var(--color-accent)]">{aboutContent.headline.line3Accent}</span>{' '}
+            {aboutContent.headline.line3Suffix}
           </span>
         </h1>
       </div>
@@ -72,9 +74,9 @@ import aboutStudioMugImg from '../../assets/about/about-studio-mug.webp';
 
         <h3
           data-about-copy
-          class="text-xs sm:text-[13.5px] font-normal text-[#3B3B3B] leading-relaxed"
+          class="text-sm sm:text-[15px] font-normal text-[#3B3B3B] leading-[1.68]"
         >
-          {aboutContent.h3Text}
+          {aboutContent.description}
         </h3>
       </div>
     </div>

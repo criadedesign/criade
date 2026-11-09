@@ -41,11 +41,10 @@ export const brandInfo = {
   positioning:
     'Construímos identidades, experiências digitais e estratégias de comunicação para marcas que querem crescer.',
   contact: {
-    whatsappHref: '#contato',
+    whatsappPhone: '+55 71 9197-0522',
+    whatsappHref: 'https://wa.me/557191970522',
     instagramHref: 'https://www.instagram.com/criadedesign/',
-    linkedinHref: '#contato',
-    behanceHref: '#projetos',
-    youtubeHref: '#contato',
+    facebookHref: 'https://www.facebook.com/criadedesign/',
   },
 } as const;
 
@@ -109,7 +108,7 @@ export const servicesContent = {
     'Da estratégia à execução, oferecemos um portfólio completo de serviços para fortalecer sua marca em todos os pontos de contato.',
   cta: {
     label: 'Conheça todos os serviços',
-    href: '#contato',
+    href: 'https://wa.me/557191970522',
   },
   deskAlt:
     'Estação criativa do estúdio Criade com notebook exibindo arte geométrica laranja, caneta digital e blocos translúcidos de acrílico laranja',
@@ -351,18 +350,16 @@ export const portfolioContent = {
 
 export const aboutContent = {
   eyebrow: 'SOBRE A CRIADE',
-  h1Lines: [
-    'A criatividade nos move.',
-    'A estratégia nos direciona.',
-    'A tecnologia amplia',
-  ],
-  h1Accent: 'nossas possibilidades.',
-  h3Text:
-    'Somos a Criade: uma agência que transforma ideias em soluções, desafios em oportunidades e marcas em experiências relevantes. Unimos diferentes perspectivas para desenvolver estratégias personalizadas, fortalecer negócios e criar conexões que geram valor.',
+  headline: {
+    line1: 'DESIGN ATRAI.',
+    line2: 'ESTRATÉGIA CONECTA.',
+    line3Accent: 'RESULTADOS',
+    line3Suffix: 'MOVEM.',
+  },
   description:
     'Somos a Criade: uma agência que transforma ideias em soluções, desafios em oportunidades e marcas em experiências relevantes. Unimos diferentes perspectivas para desenvolver estratégias personalizadas, fortalecer negócios e criar conexões que geram valor.',
   imageAlt:
-    'Mesa criativa do estúdio Criade com caneca preta exibindo o símbolo circular laranja da Criade',
+    'Mesa criativa do estúdio Criade com caneca preta exibindo o símbolo circular laranja da Criade, caderno editorial com elástico laranja, monitor e linhas orbitais de projeto',
 } as const;
 
 export const contactCtaContent = {

@@ -2,13 +2,13 @@
 
 > Agência de marketing, comunicação, design estratégico e tecnologia que pensa além do convencional, cria com propósito e desenvolve soluções que transformam a maneira como marcas se conectam com o mundo.
 
-A criatividade nos move. A estratégia nos direciona. A tecnologia amplia nossas possibilidades. Somos a Criade: uma agência que transforma ideias em soluções, desafios em oportunidades e marcas em experiências relevantes. Unimos diferentes perspectivas para desenvolver estratégias personalizadas, fortalecer negócios e criar conexões que geram valor. Porque não basta estar presente. É preciso fazer a diferença.
+Somos a Criade: uma agência que transforma ideias em soluções, desafios em oportunidades e marcas em experiências relevantes. Unimos diferentes perspectivas para desenvolver estratégias personalizadas, fortalecer negócios e criar conexões que geram valor.
 
 ## Páginas Principais
 
-- [Início — Criade Comunicação e Design](https://www.criade.art.br/): Apresentação institucional, soluções completas de comunicação, design e tecnologia, portfólio de marcas parceiras, sobre a Criade e contato comercial.
+- [Início — Criade Comunicação e Design](https://www.criade.art.br/): Apresentação institucional, sobre a Criade, soluções completas de comunicação, design e tecnologia, portfólio de marcas parceiras e contato comercial.
 - [Política de Privacidade](https://www.criade.art.br/privacidade): Compromisso de transparência, LGPD e proteção de dados.
-- [Documentação Completa para IAs](https://www.criade.art.br/llms-full.txt): Detalhamento integral de serviços, método, manifesto e portfólio de clientes da Criade.
+- [Documentação Completa para IAs](https://www.criade.art.br/llms-full.txt): Detalhamento integral de serviços, posicionamento e portfólio de clientes da Criade.
 
 ## Soluções e Serviços (01 a 06)
 
@@ -22,5 +22,7 @@ A criatividade nos move. A estratégia nos direciona. A tecnologia amplia nossas
 ## Contato Oficial
 
 - Website: https://www.criade.art.br
+- WhatsApp Comercial: +55 71 9197-0522 (https://wa.me/557191970522)
 - Instagram: https://www.instagram.com/criadedesign/
+- Facebook: https://www.facebook.com/criadedesign/
 

@@ -13,51 +13,15 @@
 
 ---
 
-## 2. Manifesto Oficial ("Sobre a Criade")
+## 2. Sobre a Criade (`/#sobre`)
 
-A criatividade nos move. A estratégia nos direciona. A tecnologia amplia nossas possibilidades.
+**DESIGN ATRAI. ESTRATÉGIA CONECTA. RESULTADOS MOVEM.**
 
 Somos a Criade: uma agência que transforma ideias em soluções, desafios em oportunidades e marcas em experiências relevantes. Unimos diferentes perspectivas para desenvolver estratégias personalizadas, fortalecer negócios e criar conexões que geram valor.
 
-Porque não basta estar presente. É preciso fazer a diferença.
-
 ---
 
-## 3. As Três Forças Motrizes (`/sobre`)
-
-### 01. Criatividade // Pulso — "A criatividade nos move."
-- **Foco:** Estética com Intenção.
-- **Descrição:** Não tratamos o design como verniz superficial. Construímos sistemas visuais proprietários, tipografia expressiva e direção de arte que despertam memória imediata e diferenciam sua marca do ruído do mercado.
-- **Especialidades:** Identidade Visual, Direção de Arte, Expressão Autoral.
-
-### 02. Estratégia // Vetor — "A estratégia nos direciona."
-- **Foco:** Clareza que Posiciona.
-- **Descrição:** Antes de qualquer traço ou campanha, investigamos o terreno competitivo, o comportamento humano e a proposta de valor do negócio. Toda decisão criativa responde a um propósito claro de crescimento.
-- **Especialidades:** Posicionamento, Arquitetura de Marca, Performance.
-
-### 03. Tecnologia // Escala — "A tecnologia amplia nossas possibilidades."
-- **Foco:** Engenharia de Experiência.
-- **Descrição:** Desenvolvemos ecossistemas digitais rápidos, acessíveis e orientados à conversão. Da estrutura semântica de SEO às interações fluidas, a tecnologia potencializa o alcance da sua mensagem.
-- **Especialidades:** Web & Interfaces, SEO Técnico, Ecossistema Digital.
-
----
-
-## 4. Alquimia de Valor & Metodologia em 4 Atos
-
-### Transformações
-1. **Ideias → Soluções:** Intuições ganham método, forma, viabilidade técnica e direção comercial clara.
-2. **Desafios → Oportunidades:** Obstáculos de comunicação ou posicionamento tornam-se alavancas de diferenciação competitiva.
-3. **Marcas → Experiências Relevantes:** Logotipos deixam de ser símbolos estáticos e passam a viver como histórias que conectam pessoas.
-
-### Arquitetura de Processo
-- **ATO 01 — Imersão & Perspectiva:** Escuta ativa, leitura de cenário e entendimento profundo das particularidades do negócio e do público.
-- **ATO 02 — Síntese Estratégica:** Definição de território verbal e visual, alinhando objetivos de negócio com uma narrativa impossível de ignorar.
-- **ATO 03 — Materialização & Design:** Execução rigorosa em todos os pontos de contato — da identidade visual ao ambiente digital e campanhas.
-- **ATO 04 — Conexão & Evolução:** Acompanhamento de impacto, otimização contínua de tráfego e presença digital para gerar valor duradouro.
-
----
-
-## 5. Portfólio de Serviços (`/#servicos`)
+## 3. Portfólio de Serviços (`/#servicos`)
 
 1. **01 — Estratégia & Identidade Visual:** Construímos marcas fortes e autênticas.
 2. **02 — Design Gráfico:** Transformamos ideias em peças memoráveis.
@@ -68,7 +32,7 @@ Porque não basta estar presente. É preciso fazer a diferença.
 
 ---
 
-## 6. Marcas Parceiras no Portfólio (`/#portfolio`)
+## 4. Marcas Parceiras no Portfólio (`/#portfolio`)
 
 Projetos que unem estratégia, criatividade e resultado para marcas de diversos segmentos (Saúde, Engenharia, Shopping Centers, Gastronomia, Moda, Óptica, Comunicação e Varejo):
 - Apipema Center (Centro Médico e Empresarial)
@@ -97,9 +61,11 @@ Projetos que unem estratégia, criatividade e resultado para marcas de diversos 
 
 ---
 
-## 7. Canais Oficiais
+## 5. Canais Oficiais & Contato
 
 - **URL Principal:** https://www.criade.art.br/
+- **WhatsApp Comercial:** +55 71 9197-0522 (https://wa.me/557191970522)
 - **Instagram Oficial:** https://www.instagram.com/criadedesign/
+- **Facebook Oficial:** https://www.facebook.com/criadedesign/
 - **Sitemap XML:** https://www.criade.art.br/sitemap-index.xml
 

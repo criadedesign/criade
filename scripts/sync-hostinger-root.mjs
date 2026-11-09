@@ -30,6 +30,14 @@ const dirsToCopy = [
   'models',
 ];
 
+const staleDirsToRemove = ['sobre'];
+for (const staleDir of staleDirsToRemove) {
+  const target = path.join(rootDir, staleDir);
+  if (existsSync(target)) {
+    rmSync(target, { recursive: true, force: true });
+  }
+}
+
 for (const file of filesToCopy) {
   const src = path.join(distDir, file);
   const dest = path.join(rootDir, file);
