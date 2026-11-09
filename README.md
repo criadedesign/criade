@@ -1,6 +1,6 @@
 # Criade Comunicação e Design — Site Oficial
 
-Repositório oficial do site institucional da **Criade Comunicação e Design** (`https://criade.com.br`), desenvolvido com **Astro 5 (Static Site Generation)**, **Tailwind CSS v4**, **Anime.js v4.5**, **GSAP + Lenis** e **Three.js / WebGL**.
+Repositório oficial do site institucional da **Criade Comunicação e Design** (`https://www.criade.art.br`), desenvolvido com **Astro 5 (Static Site Generation)**, **Tailwind CSS v4**, **Anime.js v4.5**, **GSAP + Lenis** e **Three.js / WebGL**.
 
 ---
 

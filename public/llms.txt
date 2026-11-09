@@ -6,10 +6,10 @@ A criatividade nos move. A estratégia nos direciona. A tecnologia amplia nossas
 
 ## Páginas Principais
 
-- [Início — Criade Comunicação e Design](https://criade.com.br/): Apresentação institucional, soluções completas de comunicação, design e tecnologia, portfólio de marcas parceiras e contato comercial.
-- [Sobre a Criade — Manifesto, Filosofia & Arquitetura de Marca](https://criade.com.br/sobre): Nosso manifesto conceitual, as três forças motrizes (Criatividade, Estratégia, Tecnologia), a mecânica de transformação de valor e os 4 atos da nossa metodologia.
-- [Política de Privacidade](https://criade.com.br/privacidade): Compromisso de transparência, LGPD e proteção de dados.
-- [Documentação Completa para IAs](https://criade.com.br/llms-full.txt): Detalhamento integral de serviços, método, manifesto e portfólio de clientes da Criade.
+- [Início — Criade Comunicação e Design](https://www.criade.art.br/): Apresentação institucional, soluções completas de comunicação, design e tecnologia, portfólio de marcas parceiras e contato comercial.
+- [Sobre a Criade — Manifesto, Filosofia & Arquitetura de Marca](https://www.criade.art.br/sobre): Nosso manifesto conceitual, as três forças motrizes (Criatividade, Estratégia, Tecnologia), a mecânica de transformação de valor e os 4 atos da nossa metodologia.
+- [Política de Privacidade](https://www.criade.art.br/privacidade): Compromisso de transparência, LGPD e proteção de dados.
+- [Documentação Completa para IAs](https://www.criade.art.br/llms-full.txt): Detalhamento integral de serviços, método, manifesto e portfólio de clientes da Criade.
 
 ## Soluções e Serviços (01 a 06)
 
@@ -22,6 +22,6 @@ A criatividade nos move. A estratégia nos direciona. A tecnologia amplia nossas
 
 ## Contato Oficial
 
-- Website: https://criade.com.br
+- Website: https://www.criade.art.br
 - Instagram: https://www.instagram.com/criadedesign/
 

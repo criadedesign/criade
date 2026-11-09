@@ -1,7 +1,7 @@
 # ============================================================================
 # CRIADE COMUNICAÇÃO E DESIGN — ROBOTS.TXT (GOOGLE SEARCH & AI ANSWER ENGINES)
-# Domínio Canônico: https://criade.com.br
-# Contexto Estruturado para IAs / LLMs: https://criade.com.br/llms.txt
+# Domínio Canônico: https://www.criade.art.br
+# Contexto Estruturado para IAs / LLMs: https://www.criade.art.br/llms.txt
 # ============================================================================
 
 # 1. Regra Geral para Todos os Rastreadores Legítimos
@@ -68,6 +68,6 @@ User-agent: YouBot
 Allow: /
 
 # 7. Sitemaps XML Oficiais
-Sitemap: https://criade.com.br/sitemap-index.xml
-Sitemap: https://criade.com.br/sitemap-0.xml
-Host: https://criade.com.br
+Sitemap: https://www.criade.art.br/sitemap-index.xml
+Sitemap: https://www.criade.art.br/sitemap-0.xml
+Host: https://www.criade.art.br

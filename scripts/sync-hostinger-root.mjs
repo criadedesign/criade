@@ -51,3 +51,4 @@ for (const dir of dirsToCopy) {
 }
 
 console.log('[sync-hostinger-root] Artefatos estáticos sincronizados na raiz para Hostinger public_html.');
+

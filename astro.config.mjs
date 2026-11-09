@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 
-const siteUrl = process.env.PUBLIC_SITE_URL || 'https://criade.com.br';
+const siteUrl = process.env.PUBLIC_SITE_URL || 'https://www.criade.art.br';
 const buildTimestamp = new Date().toISOString();
 
 // https://astro.build/config
