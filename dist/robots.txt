@@ -1,0 +1,73 @@
+# ============================================================================
+# CRIADE COMUNICAÇÃO E DESIGN — ROBOTS.TXT (GOOGLE SEARCH & AI ANSWER ENGINES)
+# Domínio Canônico: https://criade.com.br
+# Contexto Estruturado para IAs / LLMs: https://criade.com.br/llms.txt
+# ============================================================================
+
+# 1. Regra Geral para Todos os Rastreadores Legítimos
+User-agent: *
+Allow: /
+Allow: /_astro/
+Allow: /images/
+Allow: /llms.txt
+Allow: /llms-full.txt
+Disallow: /404
+Disallow: /404.html
+
+# 2. Google Search, Imagens e Gemini / Google AI Overviews
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# 3. Microsoft Bing & Copilot
+User-agent: Bingbot
+Allow: /
+
+# 4. OpenAI (ChatGPT Search & GPTBot)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# 5. Anthropic (Claude Search & ClaudeBot)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# 6. Perplexity AI, Apple Intelligence, Meta AI & Outros Motores de Resposta
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# 7. Sitemaps XML Oficiais
+Sitemap: https://criade.com.br/sitemap-index.xml
+Sitemap: https://criade.com.br/sitemap-0.xml
+Host: https://criade.com.br

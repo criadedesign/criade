@@ -1,48 +1,30 @@
 # ============================================================================
-# CRIADE COMUNICAÇÃO E DESIGN — CONFIGURAÇÃO HOSTINGER (LITESPEED / APACHE)
+# CRIADE COMUNICAÇÃO E DESIGN — .htaccess (HOSTINGER LITESPEED / APACHE)
 # ============================================================================
 
-Options -Indexes -MultiViews
 DirectoryIndex index.html
-DefaultLanguage pt-BR
-AddDefaultCharset UTF-8
-
-# Página 404 estática gerada pelo Astro
 ErrorDocument 404 /404.html
 
-# Bloqueia acesso público a arquivos ocultos sensíveis (.env, .git, .htaccess)
-<FilesMatch "^\.(?!well-known)">
-  Require all denied
-</FilesMatch>
-
-# ============================================================================
-# 1. REWRITE ENGINE: HTTPS + URLS LIMPAS PARA SITE ESTÁTICO ASTRO
-# ============================================================================
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  # Força HTTPS em produção (ignora localhost)
-  RewriteCond %{HTTPS} !=on
-  RewriteCond %{HTTP_HOST} !^localhost [NC]
-  RewriteCond %{HTTP_HOST} !^127\.0\.0\.1
-  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Bloqueia acesso externo direto a diretórios e arquivos internos de código-fonte
+  RewriteRule ^(src|scripts|node_modules|\.git|\.astro)/ - [F,L]
+  RewriteRule ^(\.env.*|package(-lock)?\.json|astro\.config\.mjs|tsconfig\.json|\.nvmrc)$ - [F,L]
 
-  # Resolve rotas estáticas em diretórios (/sobre -> /sobre/index.html)
+  # Resolve rotas em diretórios estáticos (/sobre -> /sobre/index.html)
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteCond %{REQUEST_FILENAME}/index.html -f
   RewriteRule ^(.+?)/?$ $1/index.html [L]
 
-  # Suporte a URLs limpas caso exista arquivo .html correspondente
+  # Suporte a URLs limpas sem extensão .html
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}.html -f
-  RewriteRule ^(.+)$ $1.html [L]
+  RewriteRule ^(.+?)/?$ $1.html [L]
 </IfModule>
 
-# ============================================================================
-# 2. TIPOS MIME MODERNOS (WEBP, AVIF, GLB/3D, WOFF2, MJS, XML, LLMS.TXT)
-# ============================================================================
 <IfModule mod_mime.c>
   AddType image/webp .webp
   AddType image/avif .avif
@@ -52,15 +34,11 @@ ErrorDocument 404 /404.html
   AddType font/woff2 .woff2
   AddType application/javascript .js .mjs
   AddType application/wasm .wasm
-  AddType application/manifest+json .webmanifest
   AddType application/xml .xml
   AddType text/plain .txt
   AddCharset UTF-8 .html .css .js .mjs .json .xml .txt
 </IfModule>
 
-# ============================================================================
-# 3. COMPRESSÃO GZIP / DEFLATE (LITESPEED & APACHE)
-# ============================================================================
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
   AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json
@@ -68,48 +46,16 @@ ErrorDocument 404 /404.html
   AddOutputFilterByType DEFLATE font/woff2 model/gltf+json model/gltf-binary
 </IfModule>
 
-# ============================================================================
-# 4. CACHE DE ALTA PERFORMANCE (IMMUTABLE PARA /_astro/ E REVALIDAÇÃO EM HTML)
-# ============================================================================
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresDefault "access plus 1 month"
-
-  # HTML, Sitemaps e llms.txt revalidam rápido para indexação imediata
-  ExpiresByType text/html "access plus 0 seconds"
-  ExpiresByType application/json "access plus 0 seconds"
-  ExpiresByType application/xml "access plus 1 hour"
-  ExpiresByType text/xml "access plus 1 hour"
-  ExpiresByType text/plain "access plus 1 hour"
-
-  # Assets com hash do Astro e fontes
-  ExpiresByType text/css "access plus 1 year"
-  ExpiresByType application/javascript "access plus 1 year"
-  ExpiresByType font/woff2 "access plus 1 year"
-
-  # Imagens e modelos 3D
-  ExpiresByType image/webp "access plus 1 year"
-  ExpiresByType image/avif "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType model/gltf-binary "access plus 1 year"
-</IfModule>
-
 <IfModule mod_headers.c>
-  # Cache imutável de 1 ano para os bundles com hash em /_astro/
   <FilesMatch "\.(css|js|mjs|woff2|webp|avif|glb)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
-  # HTML, Sitemaps XML e arquivos de contexto IA sempre atualizados
   <FilesMatch "\.(html|xml|txt)$">
     Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
 
-  # Cabeçalhos de Segurança HTTP e Indexação
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
-  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 </IfModule>

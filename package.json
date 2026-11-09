@@ -12,7 +12,7 @@
     "start": "astro dev",
     "prepare:3d": "node scripts/prepare-3d-model.mjs",
     "typecheck": "tsc --noEmit",
-    "build": "astro build",
+    "build": "astro build && node scripts/sync-hostinger-root.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

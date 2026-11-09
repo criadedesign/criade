@@ -52,3 +52,4 @@ npm run preview
 2. **Via Upload Direto (`public_html` em Hospedagem Compartilhada / Cloud):**
    - Execute `npm run build` localmente.
    - Envie todo o conteúdo gerado dentro da pasta `dist/` (incluindo o arquivo `.htaccess`) diretamente para `public_html/`.
+

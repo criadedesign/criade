@@ -1,13 +1,14 @@
 # ============================================================================
-# CRIADE COMUNICAÇÃO E DESIGN — .gitignore (SEGURANÇA & BUILD)
+# CRIADE COMUNICAÇÃO E DESIGN — .gitignore (SEGURANÇA & DEPLOY HOSTINGER)
+# Nota: A pasta dist/ é versionada intencionalmente para que o deploy via Git
+# na Hostinger funcione imediatamente em public_html sem exigir build no servidor.
 # ============================================================================
 
 # Dependências
 node_modules/
 jspm_packages/
 
-# Diretórios de build e cache do Astro / Vite
-dist/
+# Cache interno do Astro / Vite
 .astro/
 .vite/
 
