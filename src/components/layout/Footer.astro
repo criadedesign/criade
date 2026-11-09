@@ -1,0 +1,85 @@
+---
+import { brandInfo, navigationItems } from '../../data/site-content';
+import CriadeLogo from '../ui/CriadeLogo.astro';
+import Icon from '../ui/Icon.astro';
+
+const isHome = Astro.url.pathname === '/';
+const resolveHref = (href: string) =>
+  href.startsWith('#') && !isHome ? `/${href}` : href;
+---
+
+<footer class="bg-[var(--color-background)] py-9 md:py-11 border-t border-[var(--color-border)]">
+  <div class="container-editorial">
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-4">
+      <!-- 1. Logotipo Criade à esquerda -->
+      <CriadeLogo size="footer" />
+
+      <!-- 2. Links de Navegação -->
+      <nav aria-label="Navegação do rodapé">
+        <ul class="flex flex-wrap items-center justify-center gap-6 sm:gap-7">
+          {
+            navigationItems.map((item) => (
+              <li>
+                <a
+                  href={resolveHref(item.href)}
+                  class="text-xs sm:text-sm font-medium text-[#222222] hover:text-[var(--color-accent)] transition-colors"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Divisor Vertical 1 -->
+      <span
+        class="hidden lg:block h-7 w-px bg-[#C9C4BC]"
+        aria-hidden="true"></span>
+
+      <!-- 3. Ícones de Redes Sociais (Instagram, LinkedIn, Behance, YouTube) -->
+      <div class="flex items-center gap-5 text-[#171717]" aria-label="Redes sociais">
+        <a
+          href={brandInfo.contact.instagramHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram da Criade"
+          class="hover:text-[var(--color-accent)] transition-colors"
+        >
+          <Icon name="instagram" class="w-5 h-5" />
+        </a>
+        <a
+          href={resolveHref(brandInfo.contact.linkedinHref)}
+          aria-label="LinkedIn da Criade"
+          class="hover:text-[var(--color-accent)] transition-colors"
+        >
+          <Icon name="linkedin" class="w-5 h-5" />
+        </a>
+        <a
+          href={resolveHref(brandInfo.contact.behanceHref)}
+          aria-label="Behance da Criade"
+          class="hover:text-[var(--color-accent)] transition-colors"
+        >
+          <Icon name="behance" class="w-6 h-6" />
+        </a>
+        <a
+          href={resolveHref(brandInfo.contact.youtubeHref)}
+          aria-label="YouTube da Criade"
+          class="hover:text-[var(--color-accent)] transition-colors"
+        >
+          <Icon name="youtube" class="w-5 h-5" />
+        </a>
+      </div>
+
+      <!-- Divisor Vertical 2 -->
+      <span
+        class="hidden lg:block h-7 w-px bg-[#C9C4BC]"
+        aria-hidden="true"></span>
+
+      <!-- 4. Assinatura à direita -->
+      <p class="text-xs sm:text-sm text-[#3B3B3B] font-normal text-center lg:text-right">
+        {brandInfo.tagline}
+      </p>
+    </div>
+  </div>
+</footer>

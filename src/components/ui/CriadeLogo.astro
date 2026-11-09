@@ -1,0 +1,53 @@
+---
+interface Props {
+  class?: string;
+  priority?: boolean;
+  size?: 'header' | 'footer';
+}
+
+const {
+  class: className = '',
+  priority = false,
+  size = 'header',
+} = Astro.props;
+
+const iconSizeClasses =
+  size === 'header'
+    ? 'h-9 sm:h-10 md:h-11 w-auto'
+    : 'h-8 sm:h-9 md:h-10 w-auto';
+
+const wordmarkSizeClasses =
+  size === 'header'
+    ? 'h-7 sm:h-8 md:h-9 w-auto'
+    : 'h-6 sm:h-7 md:h-8 w-auto';
+---
+
+<a
+  href="/"
+  class={`inline-flex items-center gap-2.5 sm:gap-3 min-h-11 py-1 shrink-0 group rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-accent)] ${className}`}
+  aria-label="Criade Comunicação e Design — Página inicial"
+>
+  <!-- Ícone oficial (logo-criade.webp) -->
+  <img
+    src="/images/logo-criade.webp"
+    alt=""
+    width="161"
+    height="160"
+    loading={priority ? 'eager' : 'lazy'}
+    fetchpriority={priority ? 'high' : 'auto'}
+    decoding="async"
+    class={`${iconSizeClasses} object-contain shrink-0 select-none transition-transform duration-200 group-hover:scale-[1.03]`}
+  />
+
+  <!-- Logomarca oficial (logomarca-criade.webp) substituindo o texto criadedesign -->
+  <img
+    src="/images/logomarca-criade.webp"
+    alt="Criade Comunicação e Design"
+    width="504"
+    height="160"
+    loading={priority ? 'eager' : 'lazy'}
+    fetchpriority={priority ? 'high' : 'auto'}
+    decoding="async"
+    class={`${wordmarkSizeClasses} object-contain shrink-0 select-none`}
+  />
+</a>

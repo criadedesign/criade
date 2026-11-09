@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Icon from '../components/ui/Icon.astro';
+---
+
+<BaseLayout
+  title="Página não encontrada (404) — Criade Comunicação e Design"
+  description="A página que você procura não foi encontrada ou mudou de endereço. Volte para o início da Criade Comunicação e Design."
+  canonicalPath="/404"
+  noindex={true}
+>
+  <Header />
+
+  <main
+    id="conteudo-principal"
+    class="relative overflow-hidden py-24 md:py-36 bg-[#F9F8F6] text-[#171717]"
+  >
+    <div class="container-editorial relative z-10 text-center max-w-2xl mx-auto">
+      <div class="inline-flex items-center gap-3 mb-5">
+        <span class="w-8 h-[2px] bg-[#F47721]" aria-hidden="true"></span>
+        <span class="text-xs font-bold tracking-[0.18em] uppercase text-[#F47721]">
+          ERRO 404 // ROTA NÃO ENCONTRADA
+        </span>
+        <span class="w-8 h-[2px] bg-[#F47721]" aria-hidden="true"></span>
+      </div>
+
+      <h1 class="font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-[-0.035em] leading-[1.05] text-[#171717]">
+        Essa coordenada não existe no nosso mapa.
+      </h1>
+
+      <p class="mt-5 text-sm sm:text-base text-[#4A4742] leading-relaxed">
+        O endereço acessado pode ter sido movido ou não está mais disponível. Continue explorando nossas soluções, projetos e manifesto.
+      </p>
+
+      <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/"
+          class="inline-flex items-center gap-3 rounded-full bg-[#171717] hover:bg-[#F47721] text-white px-7 py-3.5 text-xs sm:text-sm font-semibold transition-colors"
+        >
+          <span>Voltar para o Início</span>
+          <Icon name="arrow-right" class="w-4 h-4" />
+        </a>
+
+        <a
+          href="/sobre"
+          class="inline-flex items-center gap-3 rounded-full border border-[#171717]/20 hover:border-[#F47721] text-[#171717] hover:text-[#F47721] px-6 py-3.5 text-xs sm:text-sm font-semibold transition-colors"
+        >
+          <span>Conhecer a Criade</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

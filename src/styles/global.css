@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+:root {
+  /* Paleta Editorial de Estúdio (Refinamento Hero Astro Edition) */
+  --color-background: #F9F8F6;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F2EFEA;
+  --color-banner: #F2E8DE;
+  --color-foreground: #171717;
+  --color-muted: #525252;
+  --color-border: #E5E1DA;
+  --color-accent: #F47721;
+  --color-accent-hover: #D95E0B;
+
+  /* Famílias Tipográficas */
+  --font-display: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Espaçamento e Grid Editorial */
+  --container-max: 1320px;
+  --container-pad: clamp(1.25rem, 4vw, 3.5rem);
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme {
+  --color-bg: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-fg: var(--color-foreground);
+  --color-muted: var(--color-muted);
+  --color-border: var(--color-border);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+/* Base & Integração Lenis Smooth Scroll */
+html {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+}
+
+/* Acessibilidade: Foco Visível WCAG 2.2 AA */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Container Editorial Padronizado */
+.container-editorial {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+/* Tipografia Refinada de Estúdio (OpenType Kerning + Eixos Variáveis) */
+.heading-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-variation-settings: 'wght' 800;
+  font-kerning: normal;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+}
+
+.h1-perspective {
+  perspective: 800px;
+}
+
+.h1-char {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.heading-section {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  font-weight: 800;
+}
+
+/* Textura Editorial de Grão Fotográfico (SVG feTurbulence Zero-Asset) */
+.editorial-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+/* Microinterações e Revelação Discreta */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.6s var(--ease-editorial),
+      transform 0.6s var(--ease-editorial);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respeito estrito a prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

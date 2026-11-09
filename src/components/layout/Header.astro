@@ -1,0 +1,158 @@
+---
+import { navigationItems } from '../../data/site-content';
+import CriadeLogo from '../ui/CriadeLogo.astro';
+import Icon from '../ui/Icon.astro';
+
+const isHome = Astro.url.pathname === '/';
+const isSobrePage = Astro.url.pathname.startsWith('/sobre');
+const resolveHref = (href: string) =>
+  href.startsWith('#') && !isHome ? `/${href}` : href;
+---
+
+<header
+  id="site-header"
+  class="sticky top-0 z-50 w-full bg-[var(--color-background)]/95 backdrop-blur-md border-b border-[var(--color-border)] transition-colors duration-200"
+>
+  <div class="container-editorial h-18 sm:h-20 md:h-22 flex items-center justify-between gap-4 sm:gap-6">
+    <!-- Identidade Visual Criade (Ícone + Logomarca em WebP, responsivos e com área de toque >= 44px) -->
+    <CriadeLogo priority={true} size="header" />
+
+    <!-- Navegação + CTA Pílula à direita (Desktop) -->
+    <div class="hidden md:flex items-center gap-6 lg:gap-10 xl:gap-12">
+      <nav aria-label="Navegação principal">
+        <ul class="flex items-center gap-5 lg:gap-8">
+          {
+            navigationItems.map((item) => {
+              const active = item.href === '#sobre' && isSobrePage;
+              return (
+                <li>
+                  <a
+                    href={resolveHref(item.href)}
+                    aria-current={active ? 'page' : undefined}
+                    class:list={[
+                      "relative py-2 text-sm font-medium transition-colors duration-150 after:content-[''] after:absolute after:bottom-0.5 after:left-0 after:w-full after:h-[2px] after:bg-[var(--color-accent)] after:transition-transform after:duration-200 after:origin-left",
+                      active
+                        ? 'text-[var(--color-accent)] after:scale-x-100'
+                        : 'text-[#171717] hover:text-[var(--color-accent)] after:scale-x-0 hover:after:scale-x-100',
+                    ]}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </nav>
+
+      <a
+        href={resolveHref('#contato')}
+        class="inline-flex items-center justify-center gap-2.5 min-h-11 rounded-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-5 lg:px-6 py-2.5 text-xs lg:text-sm font-semibold transition-all duration-200 shadow-xs active:translate-y-px shrink-0"
+      >
+        <span>Solicite um orçamento</span>
+        <Icon name="arrow-right" class="w-4 h-4 shrink-0" />
+      </a>
+    </div>
+
+    <!-- Botão Menu Mobile Acessível (Área mínima de toque 44x44px — Heurística de Fitts / WCAG) -->
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border border-[var(--color-border)] bg-white text-[#171717] hover:border-[#171717] transition-colors cursor-pointer shrink-0"
+      aria-expanded="false"
+      aria-controls="mobile-navigation-drawer"
+      aria-label="Abrir menu de navegação"
+    >
+      <Icon name="menu" id="icon-menu-open" class="w-5 h-5" />
+      <Icon name="x" id="icon-menu-close" class="w-5 h-5 hidden" />
+    </button>
+  </div>
+
+  <!-- Painel Mobile Acessível por Teclado -->
+  <div
+    id="mobile-navigation-drawer"
+    class="hidden md:hidden border-b border-[var(--color-border)] bg-[var(--color-surface)] shadow-md"
+    role="region"
+    aria-label="Menu de navegação móvel"
+  >
+    <div class="container-editorial py-5 flex flex-col gap-5">
+      <nav aria-label="Links do menu móvel">
+        <ul class="flex flex-col divide-y divide-[var(--color-border)]">
+          {
+            navigationItems.map((item) => (
+              <li>
+                <a
+                  href={resolveHref(item.href)}
+                  data-mobile-nav-link
+                  class="flex items-center justify-between min-h-12 py-3 text-base font-semibold text-[#171717] hover:text-[var(--color-accent)] transition-colors"
+                >
+                  <span>{item.label}</span>
+                  <Icon name="arrow-right" class="w-4 h-4 text-[var(--color-accent)]" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <a
+        href={resolveHref('#contato')}
+        data-mobile-nav-link
+        class="inline-flex items-center justify-center gap-2.5 min-h-12 rounded-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-6 py-3.5 text-sm font-semibold transition-colors w-full"
+      >
+        <span>Solicite um orçamento</span>
+        <Icon name="arrow-right" class="w-4 h-4" />
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  function initMobileMenu() {
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const drawer = document.getElementById('mobile-navigation-drawer');
+    const iconOpen = document.getElementById('icon-menu-open');
+    const iconClose = document.getElementById('icon-menu-close');
+    const mobileLinks = document.querySelectorAll('[data-mobile-nav-link]');
+
+    function setMenuState(isOpen: boolean) {
+      if (!toggleBtn || !drawer || !iconOpen || !iconClose) return;
+
+      toggleBtn.setAttribute('aria-expanded', String(isOpen));
+      toggleBtn.setAttribute(
+        'aria-label',
+        isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'
+      );
+
+      if (isOpen) {
+        drawer.classList.remove('hidden');
+        iconOpen.classList.add('hidden');
+        iconClose.classList.remove('hidden');
+      } else {
+        drawer.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      }
+    }
+
+    toggleBtn?.addEventListener('click', () => {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      setMenuState(!isExpanded);
+    });
+
+    mobileLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        setMenuState(false);
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && toggleBtn?.getAttribute('aria-expanded') === 'true') {
+        setMenuState(false);
+        toggleBtn.focus();
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', initMobileMenu);
+</script>

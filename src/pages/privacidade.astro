@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { brandInfo } from '../data/site-content';
+---
+
+<BaseLayout
+  title={`Política de Privacidade — ${brandInfo.name}`}
+  description={`Política de Privacidade e tratamento de dados de contato comercial da ${brandInfo.name}.`}
+  canonicalPath="/privacidade"
+>
+  <Header />
+  <main id="conteudo-principal" class="py-16 md:py-24 border-b border-[var(--color-border)]">
+    <div class="container-editorial max-w-4xl">
+      <div class="inline-flex items-center gap-2.5 mb-4">
+        <span class="w-2 h-2 rounded-full bg-[var(--color-accent)]" aria-hidden="true"></span>
+        <span class="meta-index text-[var(--color-muted)]">TRANSPARÊNCIA E DADOS</span>
+      </div>
+
+      <h1 class="heading-section text-3xl sm:text-5xl uppercase text-[var(--color-foreground)] mb-8">
+        Política de Privacidade
+      </h1>
+
+      <div class="bg-[var(--color-surface)] border border-[var(--color-border)] p-6 sm:p-10 space-y-6 text-sm sm:text-base text-[var(--color-muted)] leading-relaxed">
+        <section class="space-y-2">
+          <h2 class="font-display text-lg font-bold text-[var(--color-foreground)]">
+            1. Coleta de informações no formulário de contato
+          </h2>
+          <p>
+            O site da <strong class="text-[var(--color-foreground)]">{brandInfo.name}</strong> solicita apenas os dados estritamente necessários para atendimento comercial: nome ou empresa, meio de contato (WhatsApp ou e-mail), especialidade de interesse e resumo do projeto.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h2 class="font-display text-lg font-bold text-[var(--color-foreground)]">
+            2. Finalidade do uso dos dados
+          </h2>
+          <p>
+            As informações enviadas pelos visitantes são utilizadas exclusivamente para responder a solicitações de orçamento, dúvidas comerciais e apresentação de propostas de serviços da agência. Não comercializamos nem compartilhamos dados pessoais com terceiros para fins publicitários.
+          </p>
+        </section>
+
+        <section class="space-y-2">
+          <h2 class="font-display text-lg font-bold text-[var(--color-foreground)]">
+            3. Direitos do titular (LGPD)
+          </h2>
+          <p>
+            Em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018), você pode solicitar a confirmação, atualização ou exclusão dos dados enviados a qualquer momento através dos nossos canais oficiais de atendimento.
+          </p>
+        </section>
+
+        <div class="pt-4 border-t border-[var(--color-border)]">
+          <a
+            href="/"
+            class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider font-semibold text-[var(--color-foreground)] hover:text-[var(--color-accent-hover)]"
+          >
+            ← Voltar para a página inicial
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+

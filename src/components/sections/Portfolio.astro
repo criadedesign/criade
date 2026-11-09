@@ -1,0 +1,406 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { portfolioContent, type BrandClient } from '../../data/site-content';
+import Icon from '../ui/Icon.astro';
+
+// Importa todas as marcas WebP geradas em src/assets/brands/
+const brandImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/brands/*.webp',
+  { eager: true }
+);
+
+function getBrandImage(slug: string): ImageMetadata | undefined {
+  const key = `../../assets/brands/${slug}.webp`;
+  return brandImages[key]?.default;
+}
+---
+
+<section
+  id="portfolio"
+  data-portfolio-section
+  aria-labelledby="portfolio-heading"
+  class="portfolio-section relative isolate overflow-hidden bg-[var(--color-background)] border-b border-[var(--color-border)] pt-14 pb-24 sm:pt-20 sm:pb-30 lg:pt-28 lg:pb-36 scroll-mt-20"
+>
+  <!-- Âncora de compatibilidade retroativa para links existentes apontando para #projetos -->
+  <div id="projetos" class="sr-only" aria-hidden="true"></div>
+
+  <!-- Previne flash visual antes da inicialização do IntersectionObserver -->
+  <script is:inline>
+    (function () {
+      var el = document.currentScript && document.currentScript.parentElement;
+      if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      el.classList.add('portfolio-pending');
+    })();
+  </script>
+
+  <!-- =====================================================================
+       ELEMENTOS GRÁFICOS DE CANTO & LINHAS ORBITAIS (Top-Right & Bottom-Left)
+       ===================================================================== -->
+
+  <!-- Canto Superior Direito: Arco Criade Laranja + Linha Orbital Arqueada -->
+  <div
+    class="pointer-events-none absolute top-0 right-0 z-0 overflow-visible w-[260px] sm:w-[380px] md:w-[480px] lg:w-[560px] h-[220px] sm:h-[300px] md:h-[380px] lg:h-[440px]"
+    aria-hidden="true"
+  >
+    <svg
+      viewBox="0 0 560 440"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-full h-full"
+    >
+      <defs>
+        <radialGradient
+          id="portfolio-corner-top-grad"
+          cx="0"
+          cy="0"
+          r="1"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="translate(560 0) rotate(135) scale(460)"
+        >
+          <stop offset="0%" stop-color="#F47721" />
+          <stop offset="68%" stop-color="#E86610" />
+          <stop offset="100%" stop-color="#D95E0B" />
+        </radialGradient>
+      </defs>
+
+      <!-- Arco Geométrico Sólido de Canto Criade -->
+      <path
+        data-portfolio-corner
+        d="M 560,0 L 560,320 C 383,320 240,177 240,0 Z"
+        fill="url(#portfolio-corner-top-grad)"
+        class="transition-opacity duration-700"
+      />
+
+      <!-- Linha Orbital Superior Contínua (desenhada via createDrawable) -->
+      <path
+        data-portfolio-orbit
+        d="M -160,380 C 80,380 280,240 370,0"
+        stroke="#F47721"
+        stroke-width="1.65"
+        stroke-linecap="round"
+        fill="none"
+        opacity="0.95"
+      />
+
+      <!-- Arco guia sutil de telemetria arquitetônica -->
+      <path
+        d="M -60,420 C 140,420 320,300 420,0"
+        stroke="#F47721"
+        stroke-width="0.75"
+        stroke-linecap="round"
+        stroke-dasharray="3 5"
+        fill="none"
+        opacity="0.3"
+      />
+    </svg>
+  </div>
+
+  <!-- Canto Inferior Esquerdo: Arcos Laranja em Camadas + Linha Orbital Ascendente -->
+  <div
+    class="pointer-events-none absolute bottom-0 left-0 z-0 overflow-visible w-[140px] sm:w-[240px] md:w-[360px] lg:w-[500px] h-[120px] sm:h-[180px] md:h-[260px] lg:h-[360px]"
+    aria-hidden="true"
+  >
+    <svg
+      viewBox="0 0 600 440"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-full h-full"
+    >
+      <defs>
+        <radialGradient
+          id="portfolio-corner-bottom-sub"
+          cx="0"
+          cy="0"
+          r="1"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="translate(0 440) rotate(-45) scale(520)"
+        >
+          <stop offset="0%" stop-color="#D95E0B" />
+          <stop offset="80%" stop-color="#C24E04" />
+          <stop offset="100%" stop-color="#A84000" />
+        </radialGradient>
+        <radialGradient
+          id="portfolio-corner-bottom-main"
+          cx="0"
+          cy="0"
+          r="1"
+          gradientUnits="userSpaceOnUse"
+          gradientTransform="translate(0 440) rotate(-45) scale(420)"
+        >
+          <stop offset="0%" stop-color="#F47721" />
+          <stop offset="70%" stop-color="#E86610" />
+          <stop offset="100%" stop-color="#D95E0B" />
+        </radialGradient>
+      </defs>
+
+      <!-- Camada inferior escura para profundidade tridimensional -->
+      <path
+        data-portfolio-corner
+        d="M 0,440 L 0,160 C 220,160 400,285 400,440 Z"
+        fill="url(#portfolio-corner-bottom-sub)"
+        class="transition-opacity duration-700"
+      />
+
+      <!-- Camada principal em Laranja Criade -->
+      <path
+        data-portfolio-corner
+        d="M 0,440 L 0,220 C 180,220 330,320 330,440 Z"
+        fill="url(#portfolio-corner-bottom-main)"
+        class="transition-opacity duration-700"
+      />
+
+      <!-- Linha Orbital Inferior Ascendente (desenhada via createDrawable) -->
+      <path
+        data-portfolio-orbit
+        d="M 0,110 C 180,95 380,185 580,390"
+        stroke="#F47721"
+        stroke-width="1.65"
+        stroke-linecap="round"
+        fill="none"
+        opacity="0.95"
+      />
+
+      <!-- Arco de guia tracejada -->
+      <path
+        d="M 0,70 C 210,50 440,150 640,360"
+        stroke="#F47721"
+        stroke-width="0.75"
+        stroke-linecap="round"
+        stroke-dasharray="3 5"
+        fill="none"
+        opacity="0.3"
+      />
+    </svg>
+  </div>
+
+  <!-- =====================================================================
+       CONTEÚDO EDITORIAL: EYEBROW, TÍTULO H2 & SUBTÍTULO
+       ===================================================================== -->
+  <div class="container-editorial relative z-10">
+    <div class="max-w-2xl">
+      <!-- Eyebrow Editorial -->
+      <div class="inline-flex items-center gap-3 mb-4 sm:mb-5">
+        <span
+          data-portfolio-eyebrow-line
+          class="w-7 sm:w-8 h-[2px] bg-[#F47721] origin-left block"
+          aria-hidden="true"
+        ></span>
+        <span
+          data-portfolio-eyebrow-text
+          class="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-[#6B6B6B]"
+        >
+          {portfolioContent.eyebrow}
+        </span>
+      </div>
+
+      <!-- Título H2 com destaque cromático Criade -->
+      <h2
+        id="portfolio-heading"
+        class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.6rem] font-bold text-[#171717] leading-[1.12] tracking-tight"
+      >
+        <span data-portfolio-heading-line class="block">
+          {portfolioContent.headline.line1}
+        </span>
+        <span data-portfolio-heading-line class="block mt-1 sm:mt-1.5">
+          {portfolioContent.headline.line2Prefix}
+          <span class="text-[#F47721] inline-block">
+            {portfolioContent.headline.accent}
+          </span>
+        </span>
+      </h2>
+
+      <!-- Subtítulo Descritivo -->
+      <p
+        data-portfolio-subtitle
+        class="mt-3.5 sm:mt-5 text-sm sm:text-base md:text-lg text-[#555555] font-normal leading-relaxed max-w-xl"
+      >
+        {portfolioContent.description}
+      </p>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       CARROSSEL DE MARCAS PARCEIRAS (Marcas ampliadas e 4 cards visíveis no Desktop)
+       ===================================================================== -->
+  <div class="relative z-10 mt-10 sm:mt-14 md:mt-16 w-full">
+    <div class="container-editorial">
+      <div class="relative flex items-center gap-2 sm:gap-3 md:gap-4">
+        <!-- Botão Anterior (<) com chevron fino -->
+        <button
+          type="button"
+          data-portfolio-prev
+          aria-label="Ver marcas anteriores"
+          class="portfolio-nav-btn shrink-0 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full border border-transparent hover:border-[#E5E2DA] hover:bg-[#FFFFFF]/80 flex items-center justify-center text-[#171717] hover:text-[#F47721] transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] active:scale-90"
+        >
+          <Icon name="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
+        </button>
+
+        <!-- Viewport do Carrossel (sem máscara de fade para evitar corte visual) -->
+        <div
+          data-portfolio-viewport
+          tabindex="0"
+          role="region"
+          aria-label="Carrossel de marcas parceiras da Criade"
+          class="portfolio-viewport flex-1 overflow-hidden py-3 -my-3 px-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] rounded-2xl"
+        >
+          <!-- Trilho deslizante contendo todas as 23 marcas em WebP -->
+          <div
+            data-portfolio-track
+            class="portfolio-track flex items-center gap-4 sm:gap-5 md:gap-6 will-change-transform"
+          >
+            {
+              portfolioContent.brands.map((brand: BrandClient, index: number) => {
+                const brandImg = getBrandImage(brand.slug);
+                return (
+                  <article
+                    data-portfolio-card
+                    data-brand-index={index}
+                    class="portfolio-card group relative shrink-0 w-full sm:w-[calc((100%-1.25rem)/2)] md:w-[calc((100%-2.5rem)/3)] lg:w-[calc((100%-4.5rem)/4)] h-[180px] sm:h-[200px] md:h-[230px] lg:h-[245px] rounded-[22px] sm:rounded-[26px] bg-[#F1EFEA] hover:bg-[#FFFFFF] border border-[#E5E2DA] hover:border-[#D6D2C8] p-5 sm:p-6 md:p-7 flex flex-col items-center justify-center transition-all duration-300 ease-out shadow-[0_4px_16px_rgba(23,23,23,0.02)] hover:shadow-[0_16px_36px_rgba(244,119,33,0.12)] cursor-pointer select-none"
+                  >
+                    {brandImg ? (
+                      <div class="w-full h-full flex items-center justify-center pointer-events-none">
+                        <Image
+                          src={brandImg}
+                          alt={`Logomarca do cliente ${brand.name}`}
+                          width={360}
+                          height={200}
+                          loading="lazy"
+                          decoding="async"
+                          class="max-w-[88%] max-h-[76%] w-auto h-auto object-contain opacity-95 group-hover:opacity-100 group-hover:scale-108 transition-all duration-300 ease-out"
+                        />
+                      </div>
+                    ) : (
+                      <span class="font-sans font-semibold text-sm sm:text-base text-[#171717] text-center">
+                        {brand.name}
+                      </span>
+                    )}
+
+                    <!-- Texto acessível apenas para leitores de tela -->
+                    <span class="sr-only">
+                      {brand.name} ({brand.category})
+                    </span>
+                  </article>
+                );
+              })
+            }
+          </div>
+        </div>
+
+        <!-- Botão Próximo (>) com chevron fino -->
+        <button
+          type="button"
+          data-portfolio-next
+          aria-label="Ver próximas marcas"
+          class="portfolio-nav-btn shrink-0 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full border border-transparent hover:border-[#E5E2DA] hover:bg-[#FFFFFF]/80 flex items-center justify-center text-[#171717] hover:text-[#F47721] transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] active:scale-90"
+        >
+          <Icon name="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
+        </button>
+      </div>
+
+      <!-- =====================================================================
+           PAGINAÇÃO (Indicadores Dinâmicos Sincronizados 1 a 1 com Cada Slide)
+           ===================================================================== -->
+      <div class="mt-8 sm:mt-10 md:mt-12 flex items-center justify-center">
+        <div class="portfolio-dots-viewport overflow-hidden max-w-[130px] sm:max-w-none px-2 py-1">
+          <nav
+            data-portfolio-dots-track
+            aria-label="Paginação do carrossel de marcas"
+            class="flex items-center gap-2 sm:gap-2.5 transition-transform duration-300 will-change-transform"
+          >
+            {
+              [0, 1, 2, 3, 4, 5].map((pageIndex) => (
+                <button
+                  type="button"
+                  data-portfolio-dot={pageIndex}
+                  aria-label={`Ir para a página ${pageIndex + 1} de marcas parceiras`}
+                  aria-selected={pageIndex === 0 ? 'true' : 'false'}
+                  class={`h-2.5 rounded-full shrink-0 transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F47721] ${
+                    pageIndex === 0
+                      ? 'bg-[#F47721] w-7'
+                      : 'bg-[#DEDBD5] hover:bg-[#BDBAB3] w-2.5'
+                  }`}
+                />
+              ))
+            }
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     ESTILOS COMPLEMENTARES & ISOLAMENTO
+     ===================================================================== -->
+<style>
+  /* Previne flash antes do IntersectionObserver */
+  :global(.portfolio-pending) [data-portfolio-orbit] {
+    stroke-dashoffset: 1;
+  }
+  :global(.portfolio-pending) [data-portfolio-eyebrow-line] {
+    transform: scaleX(0);
+  }
+  :global(.portfolio-pending) [data-portfolio-eyebrow-text],
+  :global(.portfolio-pending) [data-portfolio-heading-line],
+  :global(.portfolio-pending) [data-portfolio-subtitle],
+  :global(.portfolio-pending) [data-portfolio-card],
+  :global(.portfolio-pending) [data-portfolio-prev],
+  :global(.portfolio-pending) [data-portfolio-next],
+  :global(.portfolio-pending) [data-portfolio-dot] {
+    opacity: 0;
+  }
+
+  /* Efeito de aceleração em GPU nos cards */
+  .portfolio-card {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform, box-shadow, filter;
+  }
+
+  /* Suaviza transição de paginação */
+  .portfolio-track {
+    touch-action: pan-y;
+  }
+</style>
+
+<!-- =====================================================================
+     SCRIPT DE INICIALIZAÇÃO E CICLO DE VIDA (Astro ClientRouter)
+     ===================================================================== -->
+<script>
+  import { mountPortfolioChoreography } from '../../scripts/portfolio-choreography';
+
+  let choreographyHandle: { destroy: () => void } | null = null;
+
+  function initPortfolio() {
+    if (choreographyHandle) {
+      choreographyHandle.destroy();
+      choreographyHandle = null;
+    }
+
+    const section = document.querySelector<HTMLElement>('[data-portfolio-section]');
+    if (!section) return;
+
+    const finePointer = window.matchMedia('(pointer: fine)').matches;
+    const desktop = window.matchMedia('(min-width: 1024px)').matches;
+
+    choreographyHandle = mountPortfolioChoreography(section, {
+      finePointer,
+      desktop,
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPortfolio, { once: true });
+  } else {
+    initPortfolio();
+  }
+
+  document.addEventListener('astro:page-load', initPortfolio);
+  document.addEventListener('astro:before-swap', () => {
+    if (choreographyHandle) {
+      choreographyHandle.destroy();
+      choreographyHandle = null;
+    }
+  });
+</script>

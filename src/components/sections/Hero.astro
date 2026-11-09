@@ -1,0 +1,535 @@
+---
+import { Image } from 'astro:assets';
+import heroStudioShowcase from '../../assets/hero-studio-showcase.webp';
+import { heroContent } from '../../data/site-content';
+import Icon from '../ui/Icon.astro';
+
+const fullHeadlineSr = [
+  ...heroContent.headline.darkLines,
+  ...heroContent.headline.accentLines,
+].join(' ');
+---
+
+<section
+  data-hero
+  aria-labelledby="hero-heading"
+  class="hero relative isolate flex flex-col lg:flex-row lg:items-center overflow-hidden bg-[var(--color-background)] border-b border-[var(--color-border)] min-h-[calc(100svh-4.5rem)] sm:min-h-[calc(100svh-5rem)] md:min-h-[calc(100svh-5.5rem)]"
+>
+  <!-- Previne flash antes da coreografia iniciar (com fail-safe de 2s e respeito a prefers-reduced-motion) -->
+  <script is:inline>
+    (function () {
+      var el = document.currentScript && document.currentScript.parentElement;
+      if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      el.classList.add('hero-pending');
+      setTimeout(function () {
+        el.classList.remove('hero-pending');
+      }, 2000);
+    })();
+  </script>
+
+  <!-- Textura Editorial de Grão Sutil -->
+  <div
+    class="editorial-grain pointer-events-none absolute inset-0 z-0 opacity-[0.022] mix-blend-multiply"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Acento Orgânico Superior Esquerdo + Linha Fina de Registro -->
+  <svg
+    class="pointer-events-none select-none absolute top-0 left-0 z-10 w-11 sm:w-20 lg:w-28 xl:w-32 h-auto overflow-visible"
+    viewBox="0 0 136 138"
+    fill="none"
+    aria-hidden="true"
+  >
+    <defs>
+      <linearGradient id="hero-corner-tl" x1="0" y1="0" x2="118" y2="118" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#FF7D24" />
+        <stop offset="55%" stop-color="#F47721" />
+        <stop offset="100%" stop-color="#E65F07" />
+      </linearGradient>
+    </defs>
+    <path
+      data-corner-solid
+      d="M0 0H118C98 52 54 96 0 120V0Z"
+      fill="url(#hero-corner-tl)"
+    />
+    <path
+      data-corner-hairline
+      d="M0 133C60 106 108 58 131 0"
+      stroke="#F47721"
+      stroke-width="1.15"
+      stroke-linecap="round"
+    />
+  </svg>
+
+  <!-- ========== COLUNA ESQUERDA: TIPOGRAFIA EDITORIAL, CTA, PILARES & ASSINATURA ========== -->
+  <div
+    data-hero-content
+    class="container-editorial relative z-30 w-full pt-11 pb-6 sm:pt-13 sm:pb-9 lg:py-12 xl:py-14"
+  >
+    <div class="max-w-[35.5rem] xl:max-w-[38rem]">
+      <!-- 1. Eyebrow Editorial: ESTRATÉGIA • CRIATIVIDADE • RESULTADO -->
+      <p
+        data-hero-eyebrow
+        class="flex flex-wrap items-center gap-x-2.5 sm:gap-x-3 gap-y-1 text-[10.5px] sm:text-[11.5px] font-semibold uppercase tracking-[0.22em] text-[#2B2927]"
+      >
+        {
+          heroContent.eyebrowItems.map((item, idx) => (
+            <>
+              <span class="inline-flex overflow-hidden py-0.5">
+                <span data-eyebrow-word class="inline-block will-change-transform">
+                  {item}
+                </span>
+              </span>
+              {idx < heroContent.eyebrowItems.length - 1 && (
+                <span
+                  data-eyebrow-dot
+                  class="inline-block w-1.25 h-1.25 rounded-full bg-[var(--color-accent)] shrink-0 will-change-transform"
+                  aria-hidden="true"
+                />
+              )}
+            </>
+          ))
+        }
+      </p>
+
+      <!-- 2. Headline Principal (H1): Desenvolvendo soluções. Criando possibilidades. -->
+      <h1
+        id="hero-heading"
+        class="heading-hero h1-perspective mt-3.5 sm:mt-4 text-[#141413] text-[clamp(2.15rem,8vw,3.2rem)] lg:text-[clamp(2.65rem,3.65vw,3.6rem)]"
+      >
+        <span class="sr-only">{fullHeadlineSr}</span>
+
+        {
+          heroContent.headline.darkLines.map((line) => (
+            <span
+              class="block overflow-hidden whitespace-nowrap pt-[0.14em] -mt-[0.10em] pb-[0.15em] -mb-[0.11em]"
+              aria-hidden="true"
+            >
+              <span class="inline-flex items-baseline gap-x-[0.24em]">
+                {line.split(' ').map((word) => (
+                  <span data-h1-word="dark" class="hero-word inline-block">
+                    {word}
+                  </span>
+                ))}
+              </span>
+            </span>
+          ))
+        }
+
+        {
+          heroContent.headline.accentLines.map((line) => (
+            <span
+              class="block overflow-hidden whitespace-nowrap pt-[0.14em] -mt-[0.10em] pb-[0.18em] -mb-[0.14em]"
+              aria-hidden="true"
+            >
+              <span class="inline-flex items-baseline gap-x-[0.24em] text-[var(--color-accent)]">
+                {line.split(' ').map((word) => (
+                  <span data-h1-word="accent" class="hero-word inline-block">
+                    {word}
+                  </span>
+                ))}
+              </span>
+            </span>
+          ))
+        }
+      </h1>
+
+      <!-- 3. Subtítulo Editorial (H2) -->
+      <h2
+        data-hero-description
+        class="mt-4.5 sm:mt-5 max-w-[42ch] text-[15px] sm:text-[15.5px] lg:text-[16px] font-normal text-[#3B3835] leading-[1.58] tracking-[-0.01em] text-pretty will-change-transform"
+      >
+        {heroContent.subheadline}
+      </h2>
+
+      <!-- 4. Botão CTA Pílula com Brilho Quente e Atração Magnética -->
+      <div data-hero-cta class="mt-6 sm:mt-7 will-change-transform">
+        <a
+          data-magnetic
+          href={heroContent.primaryCta.href}
+          class="hero-cta-pill group relative inline-flex items-center justify-center gap-3 min-h-12.5 rounded-full px-7 sm:px-8 py-3.5 text-[14.5px] sm:text-[15px] font-semibold tracking-[-0.01em] text-white cursor-pointer overflow-hidden"
+        >
+          <span
+            class="pointer-events-none absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.24),transparent_65%)]"
+            aria-hidden="true"
+          ></span>
+          <span data-magnetic-text class="relative z-10 inline-flex items-center gap-2.5">
+            <span>{heroContent.primaryCta.label}</span>
+            <Icon
+              name="arrow-right"
+              class="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1"
+            />
+          </span>
+        </a>
+      </div>
+
+      <!-- 5. Faixa dos 3 Pilares com Ícones Line-Art Desenháveis + Divisores 1px -->
+      <div
+        class="mt-8 sm:mt-8.5 lg:mt-9 max-w-[26.5rem] flex items-stretch justify-between gap-3 sm:gap-5"
+        role="list"
+        aria-label="Diferenciais da Criade"
+      >
+        {
+          heroContent.pillars.map((pillar, index) => (
+            <>
+              <div
+                data-pillar-item
+                role="listitem"
+                class="group flex flex-col items-start justify-between gap-2.5 min-w-0 flex-1 py-0.5"
+              >
+                <div class="pillar-icon-wrap text-[#1D1B19] transition-colors duration-250 group-hover:text-[#141413]">
+                  <Icon name={pillar.icon} class="w-7 h-7 sm:w-7.5 sm:h-7.5" />
+                </div>
+                <div data-pillar-text class="leading-[1.24] will-change-transform">
+                  <span class="block text-[12.5px] sm:text-[13px] font-bold text-[#171717] tracking-[-0.01em]">
+                    {pillar.title}
+                  </span>
+                  <span class="block text-[12px] sm:text-[12.5px] font-normal text-[#4A4641]">
+                    {pillar.subtitle}
+                  </span>
+                </div>
+              </div>
+
+              {index < heroContent.pillars.length - 1 && (
+                <span
+                  data-pillar-divider
+                  class="w-px self-stretch bg-[#D9D4CB] shrink-0 will-change-transform"
+                  aria-hidden="true"
+                />
+              )}
+            </>
+          ))
+        }
+      </div>
+
+      <!-- 6. Assinatura Inferior Editorial -->
+      <div class="mt-7 sm:mt-8 flex items-center gap-3.5">
+        <span
+          data-signature-line
+          class="inline-block w-11 sm:w-13 h-[1.25px] bg-[var(--color-accent)] shrink-0 will-change-transform"
+          aria-hidden="true"
+        ></span>
+        <p
+          data-signature-text
+          class="text-[11.5px] sm:text-[12px] tracking-[0.04em] text-[#45413D] will-change-transform"
+        >
+          <strong class="font-bold text-[#171717]">{heroContent.signature.brand}</strong>{' '}
+          {heroContent.signature.tagline}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== COLUNA DIREITA: PALCO CRIATIVO + LINHAS ORBITAIS CO-REGISTRADAS (1200x896) ========== -->
+  <div
+    data-hero-stage
+    class="relative z-20 w-full sm:w-[92%] sm:ml-auto lg:w-[66%] xl:w-[65%] lg:ml-0 lg:absolute lg:inset-y-0 lg:right-0 flex items-end justify-end pointer-events-none select-none mt-2 sm:mt-1 lg:mt-0 max-lg:overflow-hidden max-lg:pt-6"
+  >
+    <div class="relative w-full max-w-[1090px] aspect-[1200/896]">
+      <!-- Arco Geométrico Arquitetônico de Fundo (Evita corte reto no topo do círculo cinza) -->
+      <svg
+        class="pointer-events-none absolute inset-0 w-full h-full overflow-visible z-0"
+        viewBox="0 0 1200 896"
+        fill="none"
+        aria-hidden="true"
+      >
+        <circle cx="1146" cy="176" r="372" fill="#ECEAE6" opacity="0.88" />
+      </svg>
+
+      <!-- Camada Vetorial Traseira (z-[5]): Passa POR TRÁS da câmera fotográfica, vaso e planta (z-10) -->
+      <div
+        data-hero-lines-layer
+        class="pointer-events-none absolute inset-0 z-[5] will-change-transform"
+        aria-hidden="true"
+      >
+        <svg
+          class="orbit-svg w-full h-full overflow-visible"
+          viewBox="0 0 1200 896"
+          fill="none"
+        >
+          <!-- Trilha Guia Arquitetônica Superior -->
+          <path
+            data-orbit-track
+            d="M 732 -250 C 652 -82, 544 82, 404 92 C 324 96, 254 112, 208 168 C 164 222, 168 308, 232 372 C 254 394, 280 408, 310 418"
+            stroke="rgba(244, 119, 33, 0.16)"
+            stroke-width="1.15"
+            stroke-linecap="round"
+            vector-effect="non-scaling-stroke"
+          />
+
+          <!-- Trajetória Orbital Principal Superior (Contorna a planta e entra POR TRÁS da câmera) -->
+          <path
+            id="hero-orbit-top"
+            data-orbit-main="top"
+            d="M 732 -250 C 652 -82, 544 82, 404 92 C 324 96, 254 112, 208 168 C 164 222, 168 308, 232 372 C 254 394, 280 408, 310 418"
+            stroke="#F47721"
+            stroke-width="1.65"
+            stroke-linecap="round"
+            vector-effect="non-scaling-stroke"
+          />
+
+          <!-- Filamento de Energia Luminosa Superior -->
+          <path
+            data-orbit-pulse="top"
+            d="M 732 -250 C 652 -82, 544 82, 404 92 C 324 96, 254 112, 208 168 C 164 222, 168 308, 232 372 C 254 394, 280 408, 310 418"
+            stroke="#FFB076"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            vector-effect="non-scaling-stroke"
+          />
+
+          <!-- Micro-partícula sincronizada no espaço vetorial 1200x896 -->
+          <circle
+            data-motion-spark="top"
+            cx="732"
+            cy="-250"
+            r="3"
+            fill="#FF9B52"
+          />
+
+          <!-- Linha Fina de Construção Arquitetônica Superior -->
+          <path
+            data-orbit-fine
+            d="M 766 -190 C 734 -32, 768 122, 858 188"
+            stroke="rgba(23, 23, 23, 0.08)"
+            stroke-width="1.1"
+            stroke-linecap="round"
+            vector-effect="non-scaling-stroke"
+          />
+
+          <!-- Nó Orbital 1 (Ancorado acima da planta com pulso vetorial concêntrico) -->
+          <g data-orbit-node="top" transform="translate(352 96)">
+            <circle
+              data-node-halo
+              cx="0"
+              cy="0"
+              r="7.5"
+              fill="none"
+              stroke="#F47721"
+              stroke-width="1.4"
+            />
+            <circle data-node-core cx="0" cy="0" r="7.5" fill="#F47721" />
+            <circle cx="-2" cy="-2" r="2.1" fill="#FFD8BC" opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Showcase Fotográfico e Arquitetônico em WebP (z-10: oclui naturalmente a curva atrás da câmera) -->
+      <div data-hero-studio class="relative z-10 w-full h-full will-change-transform">
+        <Image
+          src={heroStudioShowcase}
+          alt={heroContent.studioShowcaseAlt}
+          widths={[540, 840, 1200]}
+          sizes="(max-width: 1023px) 96vw, 65vw"
+          format="webp"
+          quality={92}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="w-full h-full block object-contain object-right-bottom"
+        />
+      </div>
+
+      <!-- Camada Vetorial Frontal (z-20): Arco inferior em primeiro plano e arco fino sobre a onda laranja -->
+      <div
+        data-hero-lines-layer
+        class="pointer-events-none absolute inset-0 z-20 will-change-transform"
+        aria-hidden="true"
+      >
+        <svg
+          class="orbit-svg w-full h-full overflow-visible"
+          viewBox="0 0 1200 896"
+          fill="none"
+        >
+          <!-- Trilha Guia Arquitetônica Inferior -->
+          <path
+            data-orbit-track
+            d="M -78 936 C -22 838, 54 812, 138 820 C 232 829, 314 874, 376 936"
+            stroke="rgba(244, 119, 33, 0.16)"
+            stroke-width="1.15"
+            stroke-linecap="round"
+            vector-effect="non-scaling-stroke"
+          />
+
+          <!-- Trajetória Orbital Principal Inferior (Arco abaixo do tablet gráfico) -->
+          <path
+            id="hero-orbit-bottom"
+            data-orbit-main="bottom"
+            d="M -78 936 C -22 838, 54 812, 138 820 C 232 829, 314 874, 376 936"
+            stroke="#F47721"
+            stroke-width="1.65"
+            stroke-linecap="round"
+            vector-effect="non-scaling-stroke"
+          />
+
+          <!-- Filamento de Energia Luminosa Inferior -->
+          <path
+            data-orbit-pulse="bottom"
+            d="M -78 936 C -22 838, 54 812, 138 820 C 232 829, 314 874, 376 936"
+            stroke="#FFB076"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            vector-effect="non-scaling-stroke"
+          />
+
+          <!-- Linha Fina de Construção Arquitetônica Direita -->
+          <path
+            data-orbit-fine
+            d="M 1036 502 C 1032 548, 1002 586, 958 606"
+            stroke="rgba(255, 250, 245, 0.85)"
+            stroke-width="1.2"
+            stroke-linecap="round"
+            vector-effect="non-scaling-stroke"
+          />
+
+          <!-- Nó Orbital 2 (Ancorado no topo do arco inferior) -->
+          <g data-orbit-node="bottom" transform="translate(116 819)">
+            <circle
+              data-node-halo
+              cx="0"
+              cy="0"
+              r="7.5"
+              fill="none"
+              stroke="#F47721"
+              stroke-width="1.4"
+            />
+            <circle data-node-core cx="0" cy="0" r="7.5" fill="#F47721" />
+            <circle cx="-2" cy="-2" r="2.1" fill="#FFD8BC" opacity="0.6" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Acento Orgânico Inferior Direito + Linha Fina de Registro -->
+  <svg
+    class="pointer-events-none select-none absolute bottom-0 right-0 z-25 w-48 sm:w-64 lg:w-84 xl:w-96 h-auto overflow-visible"
+    viewBox="0 0 384 128"
+    fill="none"
+    aria-hidden="true"
+  >
+    <defs>
+      <linearGradient id="hero-corner-br" x1="36" y1="128" x2="384" y2="12" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#F47721" />
+        <stop offset="55%" stop-color="#FF781C" />
+        <stop offset="100%" stop-color="#E55C06" />
+      </linearGradient>
+    </defs>
+    <path
+      data-corner-solid
+      d="M384 128V0C246 18 106 48 0 128H384Z"
+      fill="url(#hero-corner-br)"
+    />
+    <path
+      data-corner-hairline
+      d="M-14 128C96 42 238 10 384 -9"
+      stroke="#F47721"
+      stroke-width="1.15"
+      stroke-linecap="round"
+    />
+  </svg>
+</section>
+
+<style>
+  .heading-hero {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-variation-settings: 'wght' 800;
+    font-kerning: normal;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    letter-spacing: -0.038em;
+    line-height: 1.03;
+  }
+
+  .hero-word {
+    transform-origin: 50% 100%;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+
+  .hero-cta-pill {
+    background: linear-gradient(135deg, #FF8127 0%, #F47721 52%, #E8640C 100%);
+    box-shadow:
+      0 12px 28px -6px rgba(244, 119, 33, 0.48),
+      0 2px 6px -1px rgba(244, 119, 33, 0.26),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transition:
+      box-shadow 0.28s var(--ease-editorial),
+      filter 0.25s ease;
+  }
+
+  .hero-cta-pill:hover {
+    box-shadow:
+      0 16px 34px -5px rgba(244, 119, 33, 0.6),
+      0 4px 10px -2px rgba(244, 119, 33, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.34);
+    filter: brightness(1.02);
+  }
+
+  /* Garante escala concêntrica exata nos nós e halos SVG em qualquer navegador */
+  .orbit-svg [data-node-core],
+  .orbit-svg [data-node-halo] {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  /* Destaque cromático nos traços secundários dos ícones ao interagir com os pilares */
+  [data-pillar-item]:hover :global([data-pillar-accent]) {
+    stroke: var(--color-accent);
+    transition: stroke 0.25s ease;
+  }
+
+  /* Oculta elementos animados antes da coreografia assumir */
+  :global(.hero-pending) [data-eyebrow-word],
+  :global(.hero-pending) [data-eyebrow-dot],
+  :global(.hero-pending) [data-h1-word],
+  :global(.hero-pending) [data-hero-description],
+  :global(.hero-pending) [data-hero-cta],
+  :global(.hero-pending) [data-pillar-text],
+  :global(.hero-pending) [data-pillar-divider],
+  :global(.hero-pending) [data-signature-line],
+  :global(.hero-pending) [data-signature-text],
+  :global(.hero-pending) [data-hero-studio],
+  :global(.hero-pending) [data-corner-solid] {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  import { mountHeroLinesChoreography, type HeroChoreographyHandle } from '../../scripts/hero-lines-choreography';
+
+  let activeHandle: HeroChoreographyHandle | null = null;
+
+  function teardownHero() {
+    if (activeHandle) {
+      activeHandle.destroy();
+      activeHandle = null;
+    }
+  }
+
+  function initHero() {
+    const hero = document.querySelector<HTMLElement>('[data-hero]');
+    if (!hero || hero.dataset.heroMounted === 'true') return;
+    hero.dataset.heroMounted = 'true';
+
+    teardownHero();
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      hero.classList.remove('hero-pending');
+      return;
+    }
+
+    const finePointer = window.matchMedia('(pointer: fine) and (hover: hover)').matches;
+    const desktop = window.matchMedia('(min-width: 1024px)').matches;
+
+    activeHandle = mountHeroLinesChoreography(hero, { finePointer, desktop });
+    hero.classList.remove('hero-pending');
+  }
+
+  document.addEventListener('astro:page-load', initHero);
+  document.addEventListener('astro:before-preparation', teardownHero);
+  if (document.readyState !== 'loading') {
+    initHero();
+  }
+</script>

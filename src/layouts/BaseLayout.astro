@@ -1,0 +1,374 @@
+---
+import '@fontsource-variable/syne';
+import '@fontsource-variable/plus-jakarta-sans';
+import '@fontsource-variable/jetbrains-mono';
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+import { brandInfo, servicesContent, aboutContent } from '../data/site-content';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  pageType?: 'WebPage' | 'AboutPage' | 'ContactPage';
+  noindex?: boolean;
+  keywords?: string[];
+}
+
+const {
+  title = `${brandInfo.name} — Agência de Marketing, Branding, Design e Tecnologia`,
+  description = aboutContent.description,
+  canonicalPath = Astro.url.pathname,
+  ogImage = '/images/about-mug.webp',
+  ogImageAlt = aboutContent.imageAlt,
+  pageType = 'WebPage',
+  noindex = false,
+  keywords = [
+    'Criade Comunicação e Design',
+    'agência de marketing e design',
+    'identidade visual e branding',
+    'desenvolvimento de sites',
+    'gestão de tráfego pago',
+    'gestão de redes sociais',
+    'SEO e posicionamento digital',
+    'design gráfico estratégico',
+  ],
+} = Astro.props;
+
+const siteUrl = Astro.site
+  ? Astro.site.toString().replace(/\/$/, '')
+  : 'https://criade.com.br';
+
+const normalizedPath = canonicalPath.startsWith('/')
+  ? canonicalPath
+  : `/${canonicalPath}`;
+
+const canonicalUrl =
+  normalizedPath === '/'
+    ? `${siteUrl}/`
+    : `${siteUrl}${normalizedPath.replace(/\/$/, '')}`;
+
+const ogImageUrl = ogImage.startsWith('http')
+  ? ogImage
+  : `${siteUrl}${ogImage.startsWith('/') ? ogImage : `/${ogImage}`}`;
+
+const robotsDirective = noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+
+// Breadcrumb dinâmico por rota para indexação estruturada no Google
+const breadcrumbItems = [
+  {
+    '@type': 'ListItem',
+    position: 1,
+    name: 'Início',
+    item: `${siteUrl}/`,
+  },
+];
+
+if (normalizedPath.startsWith('/sobre')) {
+  breadcrumbItems.push({
+    '@type': 'ListItem',
+    position: 2,
+    name: 'Sobre a Criade',
+    item: `${siteUrl}/sobre`,
+  });
+} else if (normalizedPath.startsWith('/privacidade')) {
+  breadcrumbItems.push({
+    '@type': 'ListItem',
+    position: 2,
+    name: 'Política de Privacidade',
+    item: `${siteUrl}/privacidade`,
+  });
+}
+
+// Grafo Semântico JSON-LD (Schema.org) para Google Rich Results e Motores de IA (GEO / LLMO)
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['Organization', 'ProfessionalService', 'MarketingAgency'],
+      '@id': `${siteUrl}/#organization`,
+      name: brandInfo.name,
+      alternateName: ['Criade', brandInfo.shortName],
+      slogan: brandInfo.tagline,
+      description: aboutContent.description,
+      url: `${siteUrl}/`,
+      logo: {
+        '@type': 'ImageObject',
+        '@id': `${siteUrl}/#logo`,
+        url: `${siteUrl}/images/logomarca-criade.webp`,
+        contentUrl: `${siteUrl}/images/logomarca-criade.webp`,
+        caption: brandInfo.name,
+      },
+      image: {
+        '@type': 'ImageObject',
+        url: ogImageUrl,
+        width: 1024,
+        height: 576,
+        caption: ogImageAlt,
+      },
+      areaServed: {
+        '@type': 'Country',
+        name: 'Brasil',
+      },
+      knowsLanguage: ['pt-BR'],
+      knowsAbout: [
+        'Estratégia de Marca e Identidade Visual',
+        'Design Gráfico Editorial e Publicitário',
+        'Desenvolvimento de Sites de Alta Performance',
+        'Marketing Digital e Gestão de Tráfego Pago',
+        'Gestão Estratégica de Redes Sociais',
+        'SEO Técnico, Semântico e Posicionamento Digital',
+      ],
+      sameAs: [brandInfo.contact.instagramHref],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Soluções de Comunicação, Design e Tecnologia',
+        itemListElement: servicesContent.cards.map((service, index) => ({
+          '@type': 'Offer',
+          position: index + 1,
+          itemOffered: {
+            '@type': 'Service',
+            name: service.titleLines.join(' '),
+            description: service.description,
+            provider: {
+              '@id': `${siteUrl}/#organization`,
+            },
+          },
+        })),
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: `${siteUrl}/`,
+      name: brandInfo.name,
+      description: brandInfo.positioning,
+      inLanguage: 'pt-BR',
+      publisher: {
+        '@id': `${siteUrl}/#organization`,
+      },
+    },
+    {
+      '@type': pageType,
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: title,
+      description,
+      inLanguage: 'pt-BR',
+      isPartOf: {
+        '@id': `${siteUrl}/#website`,
+      },
+      about: {
+        '@id': `${siteUrl}/#organization`,
+      },
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: ogImageUrl,
+      },
+      breadcrumb: {
+        '@id': `${canonicalUrl}#breadcrumb`,
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonicalUrl}#breadcrumb`,
+      itemListElement: breadcrumbItems,
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/webp" href="/images/logo-criade.webp" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Técnico & Meta Optimizer -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords.join(', ')} />
+    <meta name="author" content={brandInfo.name} />
+    <meta name="publisher" content={brandInfo.name} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="pt-BR" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+
+    <!-- Diretivas para Googlebot, Bingbot e Indexadores de IA -->
+    <meta name="robots" content={robotsDirective} />
+    <meta name="googlebot" content={robotsDirective} />
+    <meta name="bingbot" content={robotsDirective} />
+    <meta name="theme-color" content="#F9F8F6" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="geo.region" content="BR" />
+
+    <!-- Sitemap XML & Descoberta Semântica para IAs (llms.txt) -->
+    <link
+      rel="sitemap"
+      type="application/xml"
+      title="Sitemap XML — Criade Comunicação e Design"
+      href="/sitemap-index.xml"
+    />
+    <link
+      rel="help"
+      type="text/plain"
+      title="Contexto Estruturado para IAs e LLMs"
+      href="/llms.txt"
+    />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={brandInfo.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:secure_url" content={ogImageUrl} />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="576" />
+    <meta property="og:image:alt" content={ogImageAlt} />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <!-- Astro View Transitions (Navegação Fluida de Estúdio) -->
+    <ClientRouter />
+
+    <!-- Grafo de Dados Estruturados JSON-LD (Schema.org) -->
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(structuredData)}
+    />
+  </head>
+  <body class="bg-[var(--color-background)] text-[var(--color-foreground)] antialiased selection:bg-[var(--color-accent)] selection:text-white">
+    <!-- Filtro SVG feTurbulence invisível para granulação fotográfica editorial Zero-Asset -->
+    <svg
+      aria-hidden="true"
+      class="pointer-events-none fixed top-0 left-0 w-0 h-0 opacity-0"
+    >
+      <filter id="criade-noise-filter">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.82"
+          numOctaves="3"
+          stitchTiles="stitch"
+        />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+    </svg>
+
+    <!-- Link de Pular para Conteúdo Principal (Acessibilidade por Teclado WCAG 2.2 AA) -->
+    <a
+      href="#conteudo-principal"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-5 focus:py-3 focus:bg-[var(--color-foreground)] focus:text-[var(--color-background)] focus:font-semibold focus:shadow-lg"
+    >
+      Pular para o conteúdo principal
+    </a>
+
+    <slot />
+
+    <!-- Orquestração Global: Lenis Smooth Scroll + GSAP ScrollTrigger + Reveal Observer -->
+    <script>
+      import Lenis from 'lenis';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      let activeLenis: Lenis | null = null;
+      let activeRaf: ((time: number) => void) | null = null;
+
+      function teardownSmoothScroll() {
+        if (activeRaf) {
+          gsap.ticker.remove(activeRaf);
+          activeRaf = null;
+        }
+        if (activeLenis) {
+          activeLenis.destroy();
+          activeLenis = null;
+        }
+      }
+
+      function initPageExperience() {
+        teardownSmoothScroll();
+
+        const prefersReducedMotion = window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        ).matches;
+
+        // 1. Lenis Smooth Scroll sincronizado com GSAP ScrollTrigger
+        if (!prefersReducedMotion) {
+          const lenis = new Lenis({
+            duration: 1.15,
+            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            wheelMultiplier: 0.95,
+            touchMultiplier: 1.5,
+          });
+
+          activeLenis = lenis;
+          lenis.on('scroll', ScrollTrigger.update);
+
+          const rafCallback = (time: number) => {
+            lenis.raf(time * 1000);
+          };
+          activeRaf = rafCallback;
+
+          gsap.ticker.add(rafCallback);
+          gsap.ticker.lagSmoothing(0);
+
+          // Inércia cinematográfica nos links de âncora internos (#servicos, #projetos, etc.)
+          document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener('click', (e) => {
+              const targetId = anchor.getAttribute('href');
+              if (!targetId || targetId === '#') return;
+              const targetEl = document.querySelector<HTMLElement>(targetId);
+              if (!targetEl) return;
+              e.preventDefault();
+              lenis.scrollTo(targetEl, { offset: -72, duration: 1.25 });
+              history.pushState(null, '', targetId);
+            });
+          });
+        }
+
+        // 2. Revelação discreta para as demais seções ([data-reveal])
+        const revealElements = document.querySelectorAll<HTMLElement>('[data-reveal]');
+        if (prefersReducedMotion) {
+          revealElements.forEach((el) => el.classList.add('is-visible'));
+        } else if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+          );
+          revealElements.forEach((el) => observer.observe(el));
+        } else {
+          revealElements.forEach((el) => el.classList.add('is-visible'));
+        }
+      }
+
+      document.addEventListener('astro:page-load', initPageExperience);
+      document.addEventListener('astro:before-preparation', teardownSmoothScroll);
+    </script>
+  </body>
+</html>

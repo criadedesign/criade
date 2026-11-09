@@ -1,0 +1,48 @@
+---
+import { contactCtaContent, brandInfo } from '../../data/site-content';
+import Icon from '../ui/Icon.astro';
+---
+
+<section
+  id="contato"
+  aria-labelledby="contato-heading"
+  class="bg-[#F3EAE0] py-12 md:py-16 scroll-mt-20"
+>
+  <div class="container-editorial">
+    <div
+      class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center"
+      data-reveal
+    >
+      <!-- Coluna 1 (Esquerda): Título em 2 linhas -->
+      <div class="lg:col-span-5">
+        <h2
+          id="contato-heading"
+          class="heading-section text-3xl sm:text-4xl xl:text-[2.5rem] uppercase tracking-[-0.03em] leading-[1.03]"
+        >
+          <span class="block text-[#171717]">SUA PRÓXIMA IDEIA</span>
+          <span class="block text-[var(--color-accent)]">COMEÇA AQUI.</span>
+        </h2>
+      </div>
+
+      <!-- Coluna 2 (Centro): Barra vertical + Texto de apoio -->
+      <div class="lg:col-span-4 border-l-2 border-[#171717]/65 pl-6 py-1">
+        <p class="text-xs sm:text-sm text-[#2E2E2E] leading-relaxed max-w-sm">
+          {contactCtaContent.description}
+        </p>
+      </div>
+
+      <!-- Coluna 3 (Direita): Botão Pílula Laranja "Fale com a gente ->" -->
+      <div class="lg:col-span-3 flex lg:justify-end">
+        <a
+          href={brandInfo.contact.instagramHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-3 rounded-full bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white px-8 py-3.5 text-xs sm:text-sm font-semibold transition-all duration-200 shadow-xs active:translate-y-px"
+        >
+          <span>{contactCtaContent.ctaButtonLabel}</span>
+          <Icon name="arrow-right" class="w-4 h-4" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,52 @@
+# ============================================================================
+# CRIADE COMUNICAÇÃO E DESIGN — .gitignore (SEGURANÇA & BUILD)
+# ============================================================================
+
+# Dependências
+node_modules/
+jspm_packages/
+
+# Diretórios de build e cache do Astro / Vite
+dist/
+.astro/
+.vite/
+
+# Variáveis de ambiente, chaves e segredos (NUNCA versionar)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.cert
+*.p12
+*.pfx
+*secret*
+*credentials*
+
+# Logs e diagnósticos
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Sistema Operacional e Editores
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# Arquivos temporários de referência e briefings internos apenas na raiz
+/hero-section-image.png
+/logo-criade.webp
+/logomarca-criade.webp
+/marcas criade/
+/criade-briefing.md
+/diretrizes_de_refinamento_da_hero_section_astro_edition.md

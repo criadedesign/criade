@@ -1,0 +1,66 @@
+---
+interface Props {
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  variant?: 'primary' | 'accent' | 'outline' | 'dark';
+  size?: 'sm' | 'md' | 'lg';
+  external?: boolean;
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  type = 'button',
+  variant = 'primary',
+  size = 'md',
+  external = false,
+  class: className = '',
+  ariaLabel,
+} = Astro.props;
+
+const baseStyles =
+  'inline-flex items-center justify-center gap-2.5 font-medium tracking-tight transition-all duration-200 cursor-pointer select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]';
+
+const variants: Record<NonNullable<Props['variant']>, string> = {
+  // Fundo carvão com hover laranja e texto escuro no hover (contraste máximo WCAG AA)
+  primary:
+    'bg-[var(--color-foreground)] text-[var(--color-background)] border border-[var(--color-foreground)] hover:bg-[var(--color-accent)] hover:border-[var(--color-accent)] hover:text-[var(--color-foreground)] active:translate-y-[1px]',
+  // Laranja da marca com texto escuro #171717 para garantir contraste WCAG 2.2 AA (> 7:1)
+  accent:
+    'bg-[var(--color-accent)] text-[var(--color-foreground)] font-semibold border border-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] hover:border-[var(--color-accent-hover)] active:translate-y-[1px]',
+  // Contorno editorial limpo
+  outline:
+    'bg-transparent text-[var(--color-foreground)] border border-[var(--color-foreground)]/30 hover:border-[var(--color-foreground)] hover:bg-[var(--color-surface)] active:translate-y-[1px]',
+  // Para fundos laranja (ex.: seção de chamada final)
+  dark:
+    'bg-[var(--color-foreground)] text-[var(--color-background)] font-semibold border border-[var(--color-foreground)] hover:bg-[var(--color-surface)] hover:text-[var(--color-foreground)] active:translate-y-[1px]',
+};
+
+const sizes: Record<NonNullable<Props['size']>, string> = {
+  sm: 'px-4 py-2 text-xs uppercase tracking-wider font-mono',
+  md: 'px-6 py-3.5 text-sm',
+  lg: 'px-7 py-4 text-base',
+};
+
+const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={classes}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
+      aria-label={ariaLabel}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={classes} aria-label={ariaLabel}>
+      <slot />
+    </button>
+  )
+}
+

@@ -1,0 +1,448 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import service01Img from '../../assets/services/service-01-identidade.webp';
+import service02Img from '../../assets/services/service-02-design.webp';
+import service03Img from '../../assets/services/service-03-sites.webp';
+import service04Img from '../../assets/services/service-04-marketing.webp';
+import service05Img from '../../assets/services/service-05-social.webp';
+import service06Img from '../../assets/services/service-06-seo.webp';
+import servicesDeskImg from '../../assets/services/services-desk-vignette.webp';
+import { servicesContent } from '../../data/site-content';
+import Icon from '../ui/Icon.astro';
+
+const cardImages: Record<string, ImageMetadata> = {
+  'identidade-visual': service01Img,
+  'design-grafico': service02Img,
+  'desenvolvimento-sites': service03Img,
+  'marketing-trafego': service04Img,
+  'redes-sociais': service05Img,
+  'seo-posicionamento': service06Img,
+};
+
+const fullHeadingSr = [
+  ...servicesContent.headline.darkLines,
+  servicesContent.headline.accentLine,
+].join(' ');
+---
+
+<section
+  id="servicos"
+  data-services-section
+  aria-labelledby="servicos-heading"
+  class="services-section relative isolate overflow-hidden bg-[var(--color-background)] border-b border-[var(--color-border)] pt-14 pb-14 lg:pt-20 lg:pb-20 scroll-mt-20"
+>
+  <!-- Previne flash antes do IntersectionObserver disparar (com fail-safe e respeito a prefers-reduced-motion) -->
+  <script is:inline>
+    (function () {
+      var el = document.currentScript && document.currentScript.parentElement;
+      if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      el.classList.add('services-pending');
+      setTimeout(function () {
+        el.classList.remove('services-pending');
+      }, 3800);
+    })();
+  </script>
+
+  <!-- Definições SVG Invisíveis: Máscaras Orgânicas Diagonais dos Cards (01/03/05 vs 02/04/06) -->
+  <svg aria-hidden="true" class="pointer-events-none absolute w-0 h-0 opacity-0">
+    <defs>
+      <clipPath id="services-clip-odd" clipPathUnits="objectBoundingBox">
+        <path d="M 0.02,0 L 1,0 L 1,1 L 0.19,1 Q 0.08,0.52 0.02,0 Z" />
+      </clipPath>
+      <clipPath id="services-clip-even" clipPathUnits="objectBoundingBox">
+        <path d="M 0.14,0 L 1,0 L 1,1 L 0.08,1 Q 0.01,0.50 0.14,0 Z" />
+      </clipPath>
+    </defs>
+  </svg>
+
+  <!-- Textura Editorial de Grão Sutil -->
+  <div
+    class="editorial-grain pointer-events-none absolute inset-0 z-0 opacity-[0.02] mix-blend-multiply"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Camada Vetorial de Curvas Orbitais Contínuas no Layout 2 Colunas (z-[5]: passa por trás do Card 01 e da estação de estúdio) -->
+  <svg
+    class="services-orbit-svg pointer-events-none select-none absolute inset-0 w-full h-full z-[5] overflow-visible hidden lg:block"
+    viewBox="0 0 1440 860"
+    preserveAspectRatio="xMidYMid slice"
+    fill="none"
+    aria-hidden="true"
+  >
+    <!-- Trilhas-guia arquitetônicas -->
+    <path
+      data-services-orbit-track
+      d="M 426 -14 C 482 66, 544 110, 622 120 C 766 138, 912 96, 988 -14"
+      stroke="rgba(244, 119, 33, 0.15)"
+      stroke-width="1.15"
+      stroke-linecap="round"
+      vector-effect="non-scaling-stroke"
+    />
+    <path
+      data-services-orbit-track
+      d="M -18 706 C 48 648, 124 636, 202 664 C 254 683, 298 720, 332 764"
+      stroke="rgba(244, 119, 33, 0.15)"
+      stroke-width="1.15"
+      stroke-linecap="round"
+      vector-effect="non-scaling-stroke"
+    />
+
+    <!-- Curva Orbital Superior (Conecta a dobra superior ao Card 01) -->
+    <path
+      id="services-orbit-top"
+      data-services-orbit="top"
+      d="M 426 -14 C 482 66, 544 110, 622 120 C 766 138, 912 96, 988 -14"
+      stroke="#F47721"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      vector-effect="non-scaling-stroke"
+    />
+    <path
+      data-services-pulse="top"
+      d="M 426 -14 C 482 66, 544 110, 622 120 C 766 138, 912 96, 988 -14"
+      stroke="#FFB076"
+      stroke-width="2.3"
+      stroke-linecap="round"
+      vector-effect="non-scaling-stroke"
+    />
+
+    <!-- Curva Orbital Inferior Esquerda (Contorna a caneta digital na estação criativa) -->
+    <path
+      id="services-orbit-bottom"
+      data-services-orbit="bottom"
+      d="M -18 706 C 48 648, 124 636, 202 664 C 254 683, 298 720, 332 764"
+      stroke="#F47721"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      vector-effect="non-scaling-stroke"
+    />
+    <path
+      data-services-pulse="bottom"
+      d="M -18 706 C 48 648, 124 636, 202 664 C 254 683, 298 720, 332 764"
+      stroke="#FFB076"
+      stroke-width="2.3"
+      stroke-linecap="round"
+      vector-effect="non-scaling-stroke"
+    />
+
+    <!-- Nó Orbital Ancorado à esquerda do Card 01 -->
+    <g data-services-node="top" transform="translate(588 115)">
+      <circle
+        data-node-halo
+        cx="0"
+        cy="0"
+        r="6.8"
+        fill="none"
+        stroke="#F47721"
+        stroke-width="1.35"
+      />
+      <circle data-node-core cx="0" cy="0" r="6.8" fill="#F47721" />
+      <circle cx="-1.8" cy="-1.8" r="1.9" fill="#FFD8BC" opacity="0.6" />
+    </g>
+  </svg>
+
+  <div class="container-editorial relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-7 xl:gap-9 items-start">
+      <!-- ========== COLUNA ESQUERDA (5 cols): MANCHETE, CTA & ESTAÇÃO CRIATIVA ========== -->
+      <div class="lg:col-span-5 flex flex-col justify-between relative z-10">
+        <div>
+          <!-- 1. Eyebrow Editorial -->
+          <div class="inline-flex items-center gap-3.5">
+            <span
+              data-services-eyebrow-line
+              class="inline-block w-7 h-[1.25px] bg-[var(--color-accent)] shrink-0 will-change-transform"
+              aria-hidden="true"
+            ></span>
+            <span
+              data-services-eyebrow-text
+              class="text-[10.5px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase text-[#524E49] will-change-transform"
+            >
+              {servicesContent.eyebrow}
+            </span>
+          </div>
+
+          <!-- 2. Título Principal da Seção (H2) em 4 Linhas -->
+          <h2
+            id="servicos-heading"
+            class="services-heading h1-perspective mt-4 sm:mt-5 text-[#141413] text-[clamp(2.2rem,7.8vw,3.2rem)] lg:text-[clamp(2.7rem,3.6vw,3.55rem)]"
+          >
+            <span class="sr-only">{fullHeadingSr}</span>
+
+            {
+              servicesContent.headline.darkLines.map((line) => (
+                <span
+                  class="block overflow-hidden whitespace-nowrap pt-[0.13em] -mt-[0.09em] pb-[0.15em] -mb-[0.11em]"
+                  aria-hidden="true"
+                >
+                  <span class="inline-flex items-baseline gap-x-[0.24em]">
+                    {line.split(' ').map((word) => (
+                      <span data-services-word="dark" class="services-word inline-block">
+                        {word}
+                      </span>
+                    ))}
+                  </span>
+                </span>
+              ))
+            }
+
+            <span
+              class="block overflow-hidden whitespace-nowrap pt-[0.13em] -mt-[0.09em] pb-[0.19em] -mb-[0.14em]"
+              aria-hidden="true"
+            >
+              <span class="inline-flex items-baseline gap-x-[0.24em] text-[var(--color-accent)]">
+                {
+                  servicesContent.headline.accentLine.split(' ').map((word) => (
+                    <span data-services-word="accent" class="services-word inline-block">
+                      {word}
+                    </span>
+                  ))
+                }
+              </span>
+            </span>
+          </h2>
+
+          <!-- 3. Parágrafo de Apoio -->
+          <p
+            data-services-description
+            class="mt-4.5 sm:mt-5 max-w-[38ch] text-[14.5px] sm:text-[15.5px] font-normal text-[#45413C] leading-[1.58] tracking-[-0.008em] text-pretty will-change-transform"
+          >
+            {servicesContent.description}
+          </p>
+
+          <!-- 4. Botão Pílula Contornado ("Conheça todos os serviços •") -->
+          <div data-services-cta class="mt-6 sm:mt-7 will-change-transform">
+            <a
+              data-services-magnetic
+              href={servicesContent.cta.href}
+              class="services-outline-pill group inline-flex items-center justify-center gap-3 min-h-11.5 rounded-full border border-[#F47721] bg-transparent hover:bg-[#F47721]/[0.07] px-6 py-2.75 text-[13.5px] sm:text-[14px] font-semibold tracking-[-0.01em] text-[#171717] transition-colors duration-250 cursor-pointer"
+            >
+              <span>{servicesContent.cta.label}</span>
+              <span
+                data-services-cta-dot
+                class="inline-block w-2 h-2 rounded-full bg-[var(--color-accent)] transition-transform duration-300 group-hover:scale-125"
+                aria-hidden="true"
+              ></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. Estação Criativa de Estúdio no Canto Inferior Esquerdo -->
+        <div
+          data-services-desk
+          class="services-desk-wrap relative z-10 mt-7 lg:mt-5 -ml-5 sm:-ml-8 lg:-ml-14 mb-0 lg:-mb-20 w-[104%] sm:w-[82%] lg:w-[118%] max-w-[560px] pointer-events-none select-none will-change-transform"
+        >
+          <Image
+            src={servicesDeskImg}
+            alt={servicesContent.deskAlt}
+            widths={[480, 720, 960]}
+            sizes="(max-width: 1023px) 85vw, 38vw"
+            format="webp"
+            quality={92}
+            loading="lazy"
+            decoding="async"
+            class="w-full h-auto block object-contain object-left-bottom"
+          />
+        </div>
+      </div>
+
+      <!-- ========== COLUNA DIREITA (7 cols): BENTO GRID 2x3 DE SERVIÇOS (01 a 06) ========== -->
+      <div
+        class="lg:col-span-7 relative z-20 grid grid-cols-1 md:grid-cols-2 gap-4 xl:gap-5"
+        role="list"
+        aria-label="Portfólio de serviços da Criade"
+      >
+        {
+          servicesContent.cards.map((card, idx) => {
+            const cardImg = cardImages[card.id];
+            const isEvenCol = idx % 2 === 1;
+
+            return (
+              <article
+                data-service-card
+                role="listitem"
+                class="service-bento-card group relative isolate flex min-h-[196px] sm:min-h-[206px] xl:min-h-[214px] rounded-[14px] bg-[#F3F1EC] border border-[#E6E2DA] overflow-hidden will-change-transform"
+              >
+                <!-- Brilho radial sutil que acompanha o cursor no hover -->
+                <div
+                  class="service-card-glow pointer-events-none absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  aria-hidden="true"
+                />
+
+                <!-- Metade Esquerda: Índice + Ícone Vetorial Laranja + Título + Descrição -->
+                <div class="relative z-10 w-[59%] p-5 xl:p-6 pr-2 flex flex-col justify-between">
+                  <div>
+                    <span class="block text-[12px] font-bold tracking-[0.02em] text-[#6B665F] transition-colors duration-200 group-hover:text-[var(--color-accent)]">
+                      {card.index}
+                    </span>
+
+                    <div
+                      data-card-icon
+                      class="mt-2.5 inline-flex text-[var(--color-accent)] will-change-transform"
+                    >
+                      <Icon name={card.icon} class="w-8 h-8 xl:w-8.5 xl:h-8.5" />
+                    </div>
+                  </div>
+
+                  <div class="mt-3">
+                    <h3 class="text-[15.5px] xl:text-[16.5px] font-extrabold leading-[1.18] tracking-[-0.022em] text-[#141413]">
+                      {card.titleLines.map((line) => (
+                        <span class="block">{line}</span>
+                      ))}
+                    </h3>
+                    <p class="mt-1.5 text-[12px] xl:text-[12.5px] font-normal leading-[1.42] text-[#55504A] max-w-[23ch]">
+                      {card.description}
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Metade Direita: Recorte Fotográfico Curvo/Diagonal com Escala Dinâmica -->
+                <div
+                  class:list={[
+                    'pointer-events-none select-none absolute inset-y-0 right-0 w-[45.5%] overflow-hidden',
+                    isEvenCol ? 'service-visual-even' : 'service-visual-odd',
+                  ]}
+                >
+                  <div
+                    data-card-visual
+                    class="w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.055] will-change-transform"
+                  >
+                    <Image
+                      src={cardImg}
+                      alt={card.alt}
+                      widths={[260, 420, 520]}
+                      sizes="(max-width: 767px) 45vw, (max-width: 1023px) 24vw, 16vw"
+                      format="webp"
+                      quality={90}
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full h-full object-cover object-center block"
+                    />
+                  </div>
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-heading {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-variation-settings: 'wght' 800;
+    font-kerning: normal;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    letter-spacing: -0.038em;
+    line-height: 1.03;
+  }
+
+  .services-word {
+    transform-origin: 50% 100%;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+
+  .service-visual-odd {
+    clip-path: url(#services-clip-odd);
+  }
+
+  .service-visual-even {
+    clip-path: url(#services-clip-even);
+  }
+
+  @media (max-width: 1023px) {
+    .services-desk-wrap {
+      -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
+    }
+  }
+
+  .service-bento-card {
+    box-shadow:
+      0 1px 2px rgba(20, 20, 19, 0.03),
+      0 8px 24px -12px rgba(20, 20, 19, 0.06);
+    transition:
+      border-color 0.28s ease,
+      box-shadow 0.28s ease,
+      background-color 0.28s ease;
+  }
+
+  .service-bento-card:hover {
+    background-color: #F6F4F0;
+    border-color: rgba(244, 119, 33, 0.36);
+    box-shadow:
+      0 14px 32px -12px rgba(20, 20, 19, 0.11),
+      0 4px 12px -4px rgba(244, 119, 33, 0.12);
+  }
+
+  .service-card-glow {
+    background: radial-gradient(
+      260px circle at var(--card-mx, 30%) var(--card-my, 30%),
+      rgba(244, 119, 33, 0.09),
+      transparent 70%
+    );
+  }
+
+  /* Garante escala concêntrica exata no nó e halo SVG da seção de serviços */
+  .services-orbit-svg [data-node-core],
+  .services-orbit-svg [data-node-halo] {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  /* Oculta elementos animados até o IntersectionObserver iniciar a entrada */
+  :global(.services-pending) [data-services-eyebrow-line],
+  :global(.services-pending) [data-services-eyebrow-text],
+  :global(.services-pending) [data-services-word],
+  :global(.services-pending) [data-services-description],
+  :global(.services-pending) [data-services-cta],
+  :global(.services-pending) [data-services-desk],
+  :global(.services-pending) [data-service-card] {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  import {
+    mountServicesChoreography,
+    type ServicesChoreographyHandle,
+  } from '../../scripts/services-choreography';
+
+  let activeServicesHandle: ServicesChoreographyHandle | null = null;
+
+  function teardownServices() {
+    if (activeServicesHandle) {
+      activeServicesHandle.destroy();
+      activeServicesHandle = null;
+    }
+  }
+
+  function initServices() {
+    const section = document.querySelector<HTMLElement>('[data-services-section]');
+    if (!section || section.dataset.servicesMounted === 'true') return;
+    section.dataset.servicesMounted = 'true';
+
+    teardownServices();
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      section.classList.remove('services-pending');
+      return;
+    }
+
+    const finePointer = window.matchMedia('(pointer: fine) and (hover: hover)').matches;
+    const desktop = window.matchMedia('(min-width: 1024px)').matches;
+
+    activeServicesHandle = mountServicesChoreography(section, { finePointer, desktop });
+  }
+
+  document.addEventListener('astro:page-load', initServices);
+  document.addEventListener('astro:before-preparation', teardownServices);
+  if (document.readyState !== 'loading') {
+    initServices();
+  }
+</script>
