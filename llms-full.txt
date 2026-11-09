@@ -100,7 +100,6 @@ Projetos que unem estratégia, criatividade e resultado para marcas de diversos 
 ## 7. Canais Oficiais
 
 - **URL Principal:** https://www.criade.art.br/
-- **Página Sobre / Manifesto:** https://www.criade.art.br/sobre
 - **Instagram Oficial:** https://www.instagram.com/criadedesign/
 - **Sitemap XML:** https://www.criade.art.br/sitemap-index.xml
 

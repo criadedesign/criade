@@ -39,15 +39,6 @@ export default defineConfig({
           };
         }
 
-        if (url.endsWith('/sobre')) {
-          return {
-            ...item,
-            changefreq: ChangeFreqEnum.MONTHLY,
-            priority: 0.9,
-            lastmod: buildTimestamp,
-          };
-        }
-
         if (url.endsWith('/privacidade')) {
           return {
             ...item,

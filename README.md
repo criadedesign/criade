@@ -7,7 +7,6 @@ Repositório oficial do site institucional da **Criade Comunicação e Design** 
 ## Arquitetura & Páginas
 
 - `/` (`src/pages/index.astro`): Home institucional (Hero interativa, Nossos Serviços, Portfólio de Marcas, Sobre a Criade e Contato).
-- `/sobre` (`src/pages/sobre.astro`): Manifesto artístico e conceitual em 5 atos (Hero Manifesto, Tríade Carbon Dark UI, Alquimia de Valor, Arquitetura de Processo e Epílogo).
 - `/privacidade` (`src/pages/privacidade.astro`): Política de Privacidade e conformidade LGPD.
 - `/404` (`src/pages/404.astro`): Página 404 personalizada integrada ao `.htaccess`.
 

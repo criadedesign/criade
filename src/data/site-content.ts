@@ -351,157 +351,18 @@ export const portfolioContent = {
 
 export const aboutContent = {
   eyebrow: 'SOBRE A CRIADE',
-  headline: {
-    line1: 'DESIGN ATRAI.',
-    line2: 'ESTRATÉGIA CONECTA.',
-    line3Accent: 'RESULTADOS',
-    line3Suffix: 'MOVEM.',
-  },
-  leadParagraph:
-    'A criatividade nos move. A estratégia nos direciona. A tecnologia amplia nossas possibilidades.',
-  bodyParagraph:
+  h1Lines: [
+    'A criatividade nos move.',
+    'A estratégia nos direciona.',
+    'A tecnologia amplia',
+  ],
+  h1Accent: 'nossas possibilidades.',
+  h3Text:
     'Somos a Criade: uma agência que transforma ideias em soluções, desafios em oportunidades e marcas em experiências relevantes. Unimos diferentes perspectivas para desenvolver estratégias personalizadas, fortalecer negócios e criar conexões que geram valor.',
-  closingStatement:
-    'Porque não basta estar presente. É preciso fazer a diferença.',
   description:
-    'A criatividade nos move. A estratégia nos direciona. A tecnologia amplia nossas possibilidades. Somos a Criade: uma agência que transforma ideias em soluções, desafios em oportunidades e marcas em experiências relevantes. Unimos diferentes perspectivas para desenvolver estratégias personalizadas, fortalecer negócios e criar conexões que geram valor. Porque não basta estar presente. É preciso fazer a diferença.',
-  ctaLabel: 'Conheça a Criade',
-  ctaHref: '/sobre',
+    'Somos a Criade: uma agência que transforma ideias em soluções, desafios em oportunidades e marcas em experiências relevantes. Unimos diferentes perspectivas para desenvolver estratégias personalizadas, fortalecer negócios e criar conexões que geram valor.',
   imageAlt:
-    'Mesa criativa do estúdio Criade com caneca preta exibindo o símbolo circular laranja da Criade, caderno editorial com elástico laranja, monitor e linhas orbitais de projeto',
-} as const;
-
-export const aboutPageContent = {
-  meta: {
-    title: 'Sobre a Criade — Manifesto, Filosofia & Arquitetura de Marca',
-    description:
-      'A criatividade nos move. A estratégia nos direciona. A tecnologia amplia nossas possibilidades. Conheça o manifesto, a visão artística e o método da Criade Comunicação e Design.',
-  },
-  hero: {
-    indexTag: '00 / MANIFESTO & ESSÊNCIA — CRIADE COMUNICAÇÃO E DESIGN',
-    eyebrow: 'SOBRE A CRIADE',
-    headlineLines: [
-      'A criatividade nos move.',
-      'A estratégia nos direciona.',
-      'A tecnologia amplia',
-    ],
-    headlineAccent: 'nossas possibilidades.',
-    manifestoLead:
-      'Somos a Criade: uma agência que transforma ideias em soluções, desafios em oportunidades e marcas em experiências relevantes.',
-    manifestoBody:
-      'Unimos diferentes perspectivas para desenvolver estratégias personalizadas, fortalecer negócios e criar conexões que geram valor.',
-    manifestoSignature:
-      'Porque não basta estar presente. É preciso fazer a diferença.',
-  },
-  triad: {
-    eyebrow: '01 / FORÇAS MOTRIZES',
-    title: 'Três dimensões em órbita contínua.',
-    subtitle:
-      'Cada projeto nasce na interseção entre sensibilidade estética, rigor analítico e engenharia digital.',
-    pillars: [
-      {
-        index: '01',
-        code: 'CRIATIVIDADE // PULSO',
-        axiom: 'A criatividade nos move.',
-        title: 'Estética com Intenção',
-        description:
-          'Não tratamos o design como verniz superficial. Construímos sistemas visuais proprietários, tipografia expressiva e direção de arte que despertam memória imediata e diferenciam sua marca do ruído do mercado.',
-        keywords: ['Identidade Visual', 'Direção de Arte', 'Expressão Autoral'],
-      },
-      {
-        index: '02',
-        code: 'ESTRATÉGIA // VETOR',
-        axiom: 'A estratégia nos direciona.',
-        title: 'Clareza que Posiciona',
-        description:
-          'Antes de qualquer traço ou campanha, investigamos o terreno competitivo, o comportamento humano e a proposta de valor do negócio. Toda decisão criativa responde a um propósito claro de crescimento.',
-        keywords: ['Posicionamento', 'Arquitetura de Marca', 'Performance'],
-      },
-      {
-        index: '03',
-        code: 'TECNOLOGIA // ESCALA',
-        axiom: 'A tecnologia amplia nossas possibilidades.',
-        title: 'Engenharia de Experiência',
-        description:
-          'Desenvolvemos ecossistemas digitais rápidos, acessíveis e orientados à conversão. Da estrutura semântica de SEO às interações fluidas, a tecnologia potencializa o alcance da sua mensagem.',
-        keywords: ['Web & Interfaces', 'SEO Técnico', 'Ecossistema Digital'],
-      },
-    ],
-  },
-  alchemy: {
-    eyebrow: '02 / ALQUIMIA DE VALOR',
-    title: 'A mecânica da transformação.',
-    subtitle:
-      'Como convertemos matéria-prima abstrata em ativos tangíveis de marca e negócio.',
-    transformations: [
-      {
-        index: 'I',
-        from: 'Ideias',
-        to: 'Soluções',
-        caption:
-          'Intuições ganham método, forma, viabilidade técnica e direção comercial clara.',
-      },
-      {
-        index: 'II',
-        from: 'Desafios',
-        to: 'Oportunidades',
-        caption:
-          'Obstáculos de comunicação ou posicionamento tornam-se alavancas de diferenciação competitiva.',
-      },
-      {
-        index: 'III',
-        from: 'Marcas',
-        to: 'Experiências Relevantes',
-        caption:
-          'Logotipos deixam de ser símbolos estáticos e passam a viver como histórias que conectam pessoas.',
-      },
-    ],
-  },
-  method: {
-    eyebrow: '03 / ARQUITETURA DE PROCESSO',
-    title: 'Diferentes perspectivas. Um único norte.',
-    subtitle:
-      'Atuamos lado a lado com cada cliente em um ciclo vivo de diagnóstico, criação e evolução.',
-    steps: [
-      {
-        step: 'ATO 01',
-        title: 'Imersão & Perspectiva',
-        description:
-          'Escuta ativa, leitura de cenário e entendimento profundo das particularidades do seu negócio e do seu público.',
-      },
-      {
-        step: 'ATO 02',
-        title: 'Síntese Estratégica',
-        description:
-          'Definição de território verbal e visual, alinhando objetivos de negócio com uma narrativa impossível de ignorar.',
-      },
-      {
-        step: 'ATO 03',
-        title: 'Materialização & Design',
-        description:
-          'Execução rigorosa em todos os pontos de contato — da identidade visual ao ambiente digital e campanhas.',
-      },
-      {
-        step: 'ATO 04',
-        title: 'Conexão & Evolução',
-        description:
-          'Acompanhamento de impacto, otimização contínua de tráfego e presença digital para gerar valor duradouro.',
-      },
-    ],
-  },
-  epilogue: {
-    eyebrow: '04 / COMPROMISSO CRIADE',
-    quoteLine1: 'Porque não basta estar presente.',
-    quoteLine2: 'É preciso fazer a diferença.',
-    ctaPrimary: {
-      label: 'Iniciar um projeto com a Criade',
-      href: '/#contato',
-    },
-    ctaSecondary: {
-      label: 'Explorar nosso portfólio',
-      href: '/#portfolio',
-    },
-  },
+    'Mesa criativa do estúdio Criade com caneca preta exibindo o símbolo circular laranja da Criade',
 } as const;
 
 export const contactCtaContent = {

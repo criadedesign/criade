@@ -68,14 +68,7 @@ const breadcrumbItems = [
   },
 ];
 
-if (normalizedPath.startsWith('/sobre')) {
-  breadcrumbItems.push({
-    '@type': 'ListItem',
-    position: 2,
-    name: 'Sobre a Criade',
-    item: `${siteUrl}/sobre`,
-  });
-} else if (normalizedPath.startsWith('/privacidade')) {
+if (normalizedPath.startsWith('/privacidade')) {
   breadcrumbItems.push({
     '@type': 'ListItem',
     position: 2,

@@ -25,7 +25,6 @@ const filesToCopy = [
 
 const dirsToCopy = [
   '_astro',
-  'sobre',
   'privacidade',
   'images',
   'models',

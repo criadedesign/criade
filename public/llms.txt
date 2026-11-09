@@ -6,8 +6,7 @@ A criatividade nos move. A estratégia nos direciona. A tecnologia amplia nossas
 
 ## Páginas Principais
 
-- [Início — Criade Comunicação e Design](https://www.criade.art.br/): Apresentação institucional, soluções completas de comunicação, design e tecnologia, portfólio de marcas parceiras e contato comercial.
-- [Sobre a Criade — Manifesto, Filosofia & Arquitetura de Marca](https://www.criade.art.br/sobre): Nosso manifesto conceitual, as três forças motrizes (Criatividade, Estratégia, Tecnologia), a mecânica de transformação de valor e os 4 atos da nossa metodologia.
+- [Início — Criade Comunicação e Design](https://www.criade.art.br/): Apresentação institucional, soluções completas de comunicação, design e tecnologia, portfólio de marcas parceiras, sobre a Criade e contato comercial.
 - [Política de Privacidade](https://www.criade.art.br/privacidade): Compromisso de transparência, LGPD e proteção de dados.
 - [Documentação Completa para IAs](https://www.criade.art.br/llms-full.txt): Detalhamento integral de serviços, método, manifesto e portfólio de clientes da Criade.
 

@@ -1,5 +1,6 @@
 # ============================================================================
 # CRIADE COMUNICAÇÃO E DESIGN — .htaccess (HOSTINGER LITESPEED / APACHE)
+# Hardened Security & Zero-Trust Least-Privilege Policy
 # ============================================================================
 
 DirectoryIndex index.html
@@ -9,9 +10,9 @@ ErrorDocument 404 /404.html
   RewriteEngine On
   RewriteBase /
 
-  # Bloqueia acesso externo direto a diretórios e arquivos internos de código-fonte
+  # Bloqueia acesso externo direto a diretórios e arquivos internos de código-fonte (Least Privilege)
   RewriteRule ^(src|scripts|node_modules|\.git|\.astro)/ - [F,L]
-  RewriteRule ^(\.env.*|package(-lock)?\.json|astro\.config\.mjs|tsconfig\.json|\.nvmrc)$ - [F,L]
+  RewriteRule ^(\.env.*|package(-lock)?\.json|astro\.config\.mjs|tsconfig\.json|\.nvmrc|README\.md)$ - [F,L]
 
   # Resolve rotas em diretórios estáticos (/sobre -> /sobre/index.html)
   RewriteCond %{REQUEST_FILENAME} -d
@@ -55,7 +56,12 @@ ErrorDocument 404 /404.html
     Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
 
+  # Security Auditor — Cabeçalhos de Segurança HTTP & Isolamento
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
 </IfModule>
