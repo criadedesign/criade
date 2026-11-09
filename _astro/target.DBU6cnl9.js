@@ -1,0 +1,1 @@
+import{_ as e,b as t,f as n,i as r,o as i,y as a}from"./drawable.ZTEKRnt6.js";var o=(o,s)=>{if(!n(s))return e.editor&&e.editor.addSet?e.editor.addSet(o,s):(s.duration=t,s.composition=i(s.composition,a.none),new r(o,s,null,0,!0).resume())};export{o as t};
